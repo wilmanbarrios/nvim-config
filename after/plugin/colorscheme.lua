@@ -1,0 +1,1 @@
+require'palenight'.set()
