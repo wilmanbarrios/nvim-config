@@ -30,7 +30,7 @@ function M.find_files()
     M.find_in_dotfiles()
   else
     require"telescope.builtin".find_files {
-      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+      find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "-E", "dotbot" },
     }
   end
 end
