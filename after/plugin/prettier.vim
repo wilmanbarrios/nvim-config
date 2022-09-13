@@ -1,1 +1,1 @@
-nnoremap <silent><Leader>p :silent! !prettier --write '%'<CR>
+nnoremap <silent><Leader>fp :silent! !prettier --write '%'<CR>

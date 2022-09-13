@@ -24,7 +24,7 @@ local map_tele = function(key, f, options, buffer)
   end
 end
 
-map_tele("<C-p>",      "find_files")
+map_tele("<Leader>p",  "find_files")
 map_tele("<Leader>b",  "buffers")
 map_tele("<Leader>fd", "find_in_dotfiles")
 map_tele("<Leader>fg", "git_files")
