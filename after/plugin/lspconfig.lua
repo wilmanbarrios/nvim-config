@@ -24,6 +24,7 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 local servers = {
   tailwindcss = {},
   html = {},
+  cssls = {},
   eslint = {},
   prismals = {},
   intelephense = {

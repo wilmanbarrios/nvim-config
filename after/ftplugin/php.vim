@@ -4,7 +4,7 @@ setlocal softtabstop=4
 setlocal textwidth=120
 
 noremap <buffer> <Leader>ki :PhpactorImportClass<CR>
-noremap <buffer> <Leader>kI :PhpactorClassExpand<CR>Bi\<esc>
+noremap <buffer> <Leader>kI :PhpactorClassExpand<CR><esc>
 noremap <buffer> <Leader>ka :PhpactorImportMissingClasses<CR>
 noremap <buffer> <Leader>rn :PhpactorMoveFile<CR>
 noremap <buffer> <Leader>cf :PhpactorCopyFile<CR>

@@ -25,3 +25,9 @@ vmap K :m '<-2<CR>gv=gv
 
 " join visual selected lines
 vmap <Leader>j :j<CR>
+
+vnoremap <Leader>y "+y
+nnoremap <Leader>y "+y
+
+inoremap ;; <esc>A;<esc>
+inoremap ,, <esc>A,<esc>
