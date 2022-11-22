@@ -1,10 +1,10 @@
-" trim white spaces before save
-autocmd BufWritePre * :call TrimWhiteSpace()
-function! TrimWhiteSpace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfunction
+" " trim white spaces before save
+" autocmd BufWritePre * :call TrimWhiteSpace()
+" function! TrimWhiteSpace()
+"     let l:save = winsaveview()
+"     keeppatterns %s/\s\+$//e
+"     call winrestview(l:save)
+" endfunction
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =

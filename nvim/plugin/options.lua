@@ -49,7 +49,9 @@ opt.termguicolors         = true
 
 opt.updatetime            = 1000
 
-opt.shortmess:append "c"
+opt.foldenable            = false
+
+opt.shortmess:append("c")
 
 -- disable unused builtin plugins
 g.loaded_netrw            = 1

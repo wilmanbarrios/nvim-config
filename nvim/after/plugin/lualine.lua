@@ -28,6 +28,7 @@ require('lualine').setup {
       'diff',
       'diagnostics',
       'filetype',
+      'location',
       'progress',
     },
     lualine_y = {},

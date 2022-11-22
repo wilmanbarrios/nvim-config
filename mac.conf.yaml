@@ -1,0 +1,17 @@
+- defaults:
+    link:
+        create: true
+        relink: true
+
+- clean:
+    ~/.config/nvim:
+        recursive: true
+
+- link:
+    ~/.config/nvim/:
+        glob: true
+        path: 'nvim/**'
+        # exclude: ['dotbot', 'install', 'linux.conf.yaml', 'mac.conf.yaml']
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]

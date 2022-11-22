@@ -47,16 +47,25 @@ return packer.startup {
     -- Improved window navigation between tmux panes and vim
     use 'christoomey/vim-tmux-navigator'
 
-    -- Refactoring
-    use  {
-      'phpactor/phpactor',
-      ft = {'php'},
-      branch = 'master',
-      run = 'composer install --no-dev -o'
+    -- -- Refactoring
+    -- use  {
+    --   'phpactor/phpactor',
+    --   ft = {'php'},
+    --   branch = 'master',
+    --   run = 'composer install --no-dev -o'
+    -- }
+
+    use {
+      "ThePrimeagen/refactoring.nvim",
+      requires = {
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-treesitter/nvim-treesitter"}
+      }
     }
 
     -- Git integration with vim
     use 'tpope/vim-fugitive'
+    use 'tpope/vim-rhubarb'
 
     use 'tpope/vim-surround'
     use 'tpope/vim-unimpaired'
@@ -163,13 +172,22 @@ return packer.startup {
     use 'tpope/vim-dadbod'
     use 'tpope/vim-dotenv'
 
+    use {
+      'lewis6991/spaceless.nvim',
+      config = function()
+        require'spaceless'.setup()
+      end
+    }
 
     -- Colorschemes
     use 'wilmanbarrios/palenight.nvim'
     -- use '~/Code/Repos/github-nvim-theme'
     use 'shaunsingh/nord.nvim'
     use "ellisonleao/gruvbox.nvim"
+    use 'folke/tokyonight.nvim'
     use 'Mofiqul/vscode.nvim'
+    use 'lewis6991/github_dark.nvim'
+
 
     if packer_bootstrap then
       require('packer').sync()

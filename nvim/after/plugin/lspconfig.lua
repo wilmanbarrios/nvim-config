@@ -8,6 +8,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "dn", vim.diagnostic.goto_next, bufopts)
   vim.keymap.set("n", "dp", vim.diagnostic.goto_prev, bufopts)
   vim.keymap.set("n", "dl", vim.diagnostic.open_float, bufopts)
+  vim.keymap.set("n", "ds", vim.diagnostic.show, bufopts)
+  vim.keymap.set("n", "dh", vim.diagnostic.hide, bufopts)
 
   -- LSP mappings
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -16,23 +18,24 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
+  -- TODO: add mapping for formatting files
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local servers = {
-  tailwindcss = {},
-  html = {},
-  cssls = {},
-  eslint = {},
-  prismals = {},
-  intelephense = {
-    init_options = {
-      globalStoragePath = vim.fn.expand("$XDG_DATA_HOME/intelephense"),
-      licenceKey = vim.fn.expand("$INTELEPHENSE_LICENCE_KEY"),
-    },
-  },
+  -- tailwindcss = {},
+  -- html = {},
+  -- cssls = {},
+  -- eslint = {},
+  -- prismals = {},
+  -- intelephense = {
+  --   init_options = {
+  --     globalStoragePath = vim.fn.expand("$XDG_DATA_HOME/intelephense"),
+  --     licenceKey = vim.fn.expand("$INTELEPHENSE_LICENCE_KEY"),
+  --   },
+  -- },
   tsserver = {
     commands = {
       OrganizeImports = {
@@ -47,23 +50,23 @@ local servers = {
       }
     }
   },
-  vuels = {
-    init_options = {
-      config = {
-        vetur = {
-          completion = {
-            autoImport = true,
-            tagCasing = "initial",
-          },
-          format = {
-            defaultFormatter = {
-              -- js = "prettier"
-            }
-          }
-        }
-      }
-    },
-  },
+  -- vuels = {
+  --   init_options = {
+  --     config = {
+  --       vetur = {
+  --         completion = {
+  --           autoImport = true,
+  --           tagCasing = "initial",
+  --         },
+  --         format = {
+  --           defaultFormatter = {
+  --             -- js = "prettier"
+  --           }
+  --         }
+  --       }
+  --     }
+  --   },
+  -- },
 }
 
 for server, opts in pairs(servers) do

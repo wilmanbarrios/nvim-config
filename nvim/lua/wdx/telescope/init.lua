@@ -85,7 +85,7 @@ function M.get_document_symbols()
 
   if vim.bo.filetype == 'php' then
     table.insert(symbols, "method")
-  elseif vim.bo.filetype == 'javascript' or vim.bo.filetype == 'typescriptreact' then
+  elseif vim.bo.filetype == 'javascript' or vim.bo.filetype == 'typescriptreact' or vim.bo.filetype == 'typescript' then
     table.insert(symbols, "function")
   end
 

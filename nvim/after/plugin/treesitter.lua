@@ -36,7 +36,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-require'nvim-treesitter.highlight'.set_custom_captures {
-  ["constructor"] = "TSConstructor",
-  ["text.warning"] = "Todo",
-}
+vim.cmd[[
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+]]
