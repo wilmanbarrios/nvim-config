@@ -25,17 +25,17 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local servers = {
-  -- tailwindcss = {},
-  -- html = {},
-  -- cssls = {},
-  -- eslint = {},
-  -- prismals = {},
-  -- intelephense = {
-  --   init_options = {
-  --     globalStoragePath = vim.fn.expand("$XDG_DATA_HOME/intelephense"),
-  --     licenceKey = vim.fn.expand("$INTELEPHENSE_LICENCE_KEY"),
-  --   },
-  -- },
+  tailwindcss = {},
+  html = {},
+  cssls = {},
+  eslint = {},
+  prismals = {},
+  intelephense = {
+    init_options = {
+      globalStoragePath = vim.fn.expand("$XDG_DATA_HOME/intelephense"),
+      licenceKey = vim.fn.expand("$INTELEPHENSE_LICENCE_KEY"),
+    },
+  },
   tsserver = {
     commands = {
       OrganizeImports = {
@@ -50,23 +50,23 @@ local servers = {
       }
     }
   },
-  -- vuels = {
-  --   init_options = {
-  --     config = {
-  --       vetur = {
-  --         completion = {
-  --           autoImport = true,
-  --           tagCasing = "initial",
-  --         },
-  --         format = {
-  --           defaultFormatter = {
-  --             -- js = "prettier"
-  --           }
-  --         }
-  --       }
-  --     }
-  --   },
-  -- },
+  vuels = {
+    init_options = {
+      config = {
+        vetur = {
+          completion = {
+            autoImport = true,
+            tagCasing = "initial",
+          },
+          format = {
+            defaultFormatter = {
+              -- js = "prettier"
+            }
+          }
+        }
+      }
+    },
+  },
 }
 
 for server, opts in pairs(servers) do
