@@ -1,29 +1,49 @@
 require('lualine').setup {
   options = {
     globalstatus = true,
-    icons_enabled = true,
     theme = 'auto',
     component_separators = { left = '', right = '|'},
     section_separators = { left = '', right = ''},
-    disabled_filetypes = {},
-    always_divide_middle = true,
-  },
-  sections = {
-    lualine_a = {
-      {
-        'branch',
-        color = 'GitBranch',
+    disabled_filetypes = {
+      winbar = {
+        'fugitive',
+        'gitcommit',
       },
     },
-    lualine_b = { },
+  },
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
     lualine_c = {
-      '%=',
+      '[[👉]]',
       {
         'filename',
         path = 1,
         file_status = true
       },
     },
+  },
+  inactive_winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {
+      '[[  ]]', -- just a placeholder to prevent text jumpings
+      {
+        'filename',
+        path = 1,
+        file_status = true
+      },
+    },
+  },
+  sections = {
+    lualine_a = {},
+    lualine_b = {
+      {
+        'branch',
+        color = '@type',
+      }
+    },
+    lualine_c = {},
     lualine_x = {
       'diff',
       'diagnostics',
