@@ -17,6 +17,11 @@ require('lualine').setup {
     lualine_c = {
       '[[👉]]',
       {
+        'filetype',
+        icon_only = true,
+        colored = true,
+      },
+      {
         'filename',
         path = 1,
         file_status = true
@@ -28,6 +33,11 @@ require('lualine').setup {
     lualine_b = {},
     lualine_c = {
       '[[  ]]', -- just a placeholder to prevent text jumpings
+      {
+        'filetype',
+        icon_only = true,
+        colored = true,
+      },
       {
         'filename',
         path = 1,
@@ -47,23 +57,8 @@ require('lualine').setup {
     lualine_x = {
       'diff',
       'diagnostics',
-      'filetype',
       'location',
       'progress',
-    },
-    lualine_y = {},
-    lualine_z = {},
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {'branch'},
-    lualine_c = {'filename'},
-    lualine_x = {
-      'diff',
-      'diagnostics',
-      'filetype',
-      'progress',
-      'location'
     },
     lualine_y = {},
     lualine_z = {},
