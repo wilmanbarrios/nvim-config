@@ -11,12 +11,9 @@ nvim_tree.setup {
   },
 }
 
-local nvim_tree_toggle = function()
-  nvim_tree.toggle()
-end
-vim.keymap.set("n", "<C-b>", nvim_tree_toggle, {silent = true, noremap = true})
+vim.keymap.set("n", "<C-b>", nvim_tree.toggle, {silent = true, noremap = true})
 
-local nvim_tree_reveal_file_in_explorer = function()
+local reveal = function()
   nvim_tree.find_file(true)
 end
-vim.keymap.set("n", "<Leader>l", nvim_tree_reveal_file_in_explorer, {silent = true, noremap = true})
+vim.keymap.set("n", "<Leader>l", reveal, {silent = true, noremap = true})
