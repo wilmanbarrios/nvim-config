@@ -8,6 +8,7 @@ require('lualine').setup {
       winbar = {
         'fugitive',
         'gitcommit',
+        'NvimTree',
       },
     },
   },
