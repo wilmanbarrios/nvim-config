@@ -8,6 +8,7 @@ RELOAD = function(...)
 end
 
 require('wdx.plugins')
+require('wdx.colorscheme')
 
 require "wdx.telescope.setup"
 require "wdx.telescope.mappings"

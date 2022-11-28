@@ -4,7 +4,12 @@ local colorschemes = {
   palenight = function ()
     vim.cmd[[colorscheme palenight]]
   end,
+  gruvbox_light = function ()
+    vim.o.background = 'light'
+    vim.cmd[[colorscheme gruvbox]]
+  end,
   gruvbox = function ()
+    vim.o.background = 'dark'
     vim.cmd[[colorscheme gruvbox]]
   end,
   nord = function ()
@@ -14,15 +19,9 @@ local colorschemes = {
     vim.cmd[[colorscheme tokyonight]]
   end,
   vscode = function ()
+    vim.o.background = 'dark'
     require('vscode').setup({
-      -- Enable transparent background
-      transparent = false,
-
-      -- Enable italic comment
       italic_comments = true,
-
-      -- Disable nvim-tree background color
-      disable_nvimtree_bg = true,
     })
   end,
 }
@@ -32,3 +31,19 @@ for theme, apply in pairs(colorschemes) do
     apply()
   end
 end
+
+function change_colorscheme()
+  local options = {}
+  for k,v in pairs(colorschemes) do
+    options[#options + 1] = k
+  end
+
+  vim.ui.select(options, {
+    prompt = 'Color Schemes:',
+  }, function(choice)
+      colorschemes[choice]()
+      RELOAD 'wdx.colorscheme'
+    end)
+end
+
+vim.keymap.set('n', '<Leader>cs', change_colorscheme)
