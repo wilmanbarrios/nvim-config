@@ -37,6 +37,11 @@ local servers = {
     },
   },
   tsserver = {
+    cmd = {
+      '/Users/developer/.local/share/nvm/versions/node/v14.16.0/bin/node',
+      '/Users/developer/.local/share/nvm/versions/node/v14.16.0/bin/typescript-language-server',
+      '--stdio', '--log-level=4'
+    },
     commands = {
       OrganizeImports = {
         function()
