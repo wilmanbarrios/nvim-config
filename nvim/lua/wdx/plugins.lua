@@ -186,8 +186,6 @@ return packer.startup {
     use "ellisonleao/gruvbox.nvim"
     use 'folke/tokyonight.nvim'
     use 'Mofiqul/vscode.nvim'
-    use 'lewis6991/github_dark.nvim'
-
 
     if packer_bootstrap then
       require('packer').sync()
