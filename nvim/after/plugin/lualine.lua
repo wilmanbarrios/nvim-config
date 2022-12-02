@@ -9,6 +9,7 @@ require('lualine').setup {
         'fugitive',
         'gitcommit',
         'NvimTree',
+        '',
       },
     },
   },
