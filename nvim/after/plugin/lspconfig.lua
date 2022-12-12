@@ -32,8 +32,8 @@ local servers = {
   prismals = {},
   intelephense = {
     init_options = {
-      globalStoragePath = vim.fn.expand("$XDG_DATA_HOME/intelephense"),
-      licenceKey = vim.fn.expand("$INTELEPHENSE_LICENCE_KEY"),
+      globalStoragePath = os.getenv("XDG_DATA_HOME") .. "/intelephense",
+      licenceKey = os.getenv("INTELEPHENSE_LICENCE_KEY"),
     },
   },
   tsserver = {

@@ -1,4 +1,4 @@
-local current_theme = vim.fn.expand('$CODE_THEME')
+local current_theme = os.getenv('CODE_THEME')
 
 local colorschemes = {
   palenight = function ()
