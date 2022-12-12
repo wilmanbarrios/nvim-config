@@ -2,21 +2,21 @@ local current_theme = os.getenv('CODE_THEME')
 
 local colorschemes = {
   palenight = function ()
-    vim.cmd[[colorscheme palenight]]
+    vim.cmd.colorscheme('palenight')
   end,
   gruvbox_light = function ()
     vim.o.background = 'light'
-    vim.cmd[[colorscheme gruvbox]]
+    vim.cmd.colorscheme('gruvbox')
   end,
   gruvbox = function ()
     vim.o.background = 'dark'
-    vim.cmd[[colorscheme gruvbox]]
+    vim.cmd.colorscheme('gruvbox')
   end,
   nord = function ()
-    vim.cmd[[colorscheme nord]]
+    vim.cmd.colorscheme('nord')
   end,
   tokyonight = function ()
-    vim.cmd[[colorscheme tokyonight]]
+    vim.cmd.colorscheme('tokyonight')
   end,
   vscode = function ()
     vim.o.background = 'dark'
