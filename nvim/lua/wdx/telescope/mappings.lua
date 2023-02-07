@@ -34,7 +34,7 @@ map_tele("<Leader>sw", "grep_prompt")
 map_tele("<Leader>sq", "grep_string")
 -- map_tele("<Leader>sl", "live_grep")
 -- map_tele("<Leader>fr", "laravel_routes")
-map_tele("<Leader>gr", "get_document_symbols")
+map_tele("<Leader>gr", "lsp_document_symbols")
 map_tele("<Leader>tt", "resume")
 
 return map_tele

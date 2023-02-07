@@ -80,20 +80,6 @@ function M.grep_prompt()
   }
 end
 
-function M.get_document_symbols()
-  local symbols = {}
-
-  if vim.bo.filetype == 'php' then
-    table.insert(symbols, "method")
-  elseif vim.bo.filetype == 'javascript' or vim.bo.filetype == 'typescriptreact' or vim.bo.filetype == 'typescript' then
-    table.insert(symbols, "function")
-  end
-
-  require"telescope.builtin".lsp_document_symbols({
-    symbols = symbols,
-  })
-end
-
 return setmetatable({}, {
   __index = function(_, k)
     reloader()
