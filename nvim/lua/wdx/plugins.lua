@@ -56,6 +56,13 @@ return packer.startup {
     -- }
 
     use {
+      "jose-elias-alvarez/null-ls.nvim",
+      requires = {
+        {"nvim-lua/plenary.nvim"},
+      }
+    }
+
+    use {
       "ThePrimeagen/refactoring.nvim",
       requires = {
         {"nvim-lua/plenary.nvim"},
