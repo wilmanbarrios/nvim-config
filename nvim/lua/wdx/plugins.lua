@@ -90,8 +90,8 @@ return packer.startup {
     }
 
     -- Test Runner
-    use { 'vim-test/vim-test', ft = {'php'} }
-    use { 'benmills/vimux', ft = {'php'} }
+    use { 'vim-test/vim-test' }
+    use { 'benmills/vimux' }
 
     -- Expand builtin text-objects
     use 'wellle/targets.vim'
