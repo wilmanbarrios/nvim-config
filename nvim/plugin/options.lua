@@ -9,7 +9,7 @@ opt.tabstop               = 4
 opt.shiftwidth            = 4
 opt.softtabstop           = 4
 
-opt.cursorline            = false
+opt.cursorline            = true
 opt.wrap                  = false
 
 opt.hidden                = true
@@ -25,11 +25,10 @@ opt.completeopt           = {'menuone', 'noinsert', 'noselect'}
 opt.mouse                 = 'a'
 
 opt.backup                = false
-opt.showmode              = true
 opt.swapfile              = false
 opt.writebackup           = false
 
-opt.lazyredraw            = true
+-- opt.lazyredraw            = true
 
 opt.number                = true
 opt.relativenumber        = true
