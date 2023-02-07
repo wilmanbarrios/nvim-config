@@ -195,7 +195,7 @@ return packer.startup {
     use 'Mofiqul/vscode.nvim'
 
     if packer_bootstrap then
-      require('packer').sync()
+      packer.sync()
     end
   end
 }
