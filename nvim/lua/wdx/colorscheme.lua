@@ -16,10 +16,25 @@ local colorschemes = {
     vim.cmd.colorscheme('nord')
   end,
   tokyonight = function ()
+    local util = require("tokyonight.util")
+
+    require("tokyonight").setup({
+      style = 'night',
+      on_highlights = function(hl, c)
+        hl["@text.todo"] = { fg = c.yellow, bg = util.darken(c.yellow, 0.1) }
+        hl["@text.danger"] = { fg = c.error, bg = util.darken(c.error, 0.1) }
+      end,
+    })
     vim.cmd.colorscheme('tokyonight')
   end,
   vscode = function ()
     vim.o.background = 'dark'
+    require('vscode').setup({
+      italic_comments = true,
+    })
+  end,
+  vscode_light = function ()
+    vim.o.background = 'light'
     require('vscode').setup({
       italic_comments = true,
     })

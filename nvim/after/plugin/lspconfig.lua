@@ -18,7 +18,15 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
-  -- TODO: add mapping for formatting files
+  vim.keymap.set("n", "<Leader>ff", function()
+    vim.lsp.buf.format({ async = false, bufnr = bufnr })
+  end, bufopts)
+
+  -- disable `tsserver` formatting in favor of null-ls `prettierd` formatting
+  if client.name == "tsserver" then
+    -- client.resolved_capabilities.document_formatting = false -- 0.7 and earlier
+    client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -28,7 +36,6 @@ local servers = {
   tailwindcss = {},
   html = {},
   cssls = {},
-  eslint = {},
   prismals = {},
   intelephense = {
     init_options = {
