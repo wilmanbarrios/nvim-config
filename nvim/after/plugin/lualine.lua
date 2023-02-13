@@ -52,7 +52,7 @@ require('lualine').setup {
     lualine_b = {
       {
         'branch',
-        color = '@type',
+        color = '@character',
       }
     },
     lualine_c = {},

@@ -107,6 +107,12 @@ return packer.startup {
 
     -- LSP
     use 'neovim/nvim-lspconfig'
+    use {
+      'j-hui/fidget.nvim',
+      config = function()
+        require("fidget").setup()
+      end
+    }
 
     -- LSP completions
     use {
