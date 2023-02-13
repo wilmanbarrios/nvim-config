@@ -114,6 +114,16 @@ return packer.startup {
       end
     }
 
+    -- LSP UIs
+    use({
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+      requires = {
+        {"nvim-tree/nvim-web-devicons"},
+        {"nvim-treesitter/nvim-treesitter"},
+      }
+    })
+
     -- LSP completions
     use {
       'hrsh7th/nvim-cmp',
