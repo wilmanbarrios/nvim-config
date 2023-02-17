@@ -1,6 +1,6 @@
-local nvim_tree = require'nvim-tree'
+local api = require'nvim-tree.api'
 
-nvim_tree.setup {
+require'nvim-tree'.setup {
   filters = {
     custom = {".git", "dotbot"},
     exclude = {".env"}
@@ -11,9 +11,11 @@ nvim_tree.setup {
   },
 }
 
-vim.keymap.set("n", "<C-b>", nvim_tree.toggle, {silent = true, noremap = true})
+local map_options = {silent = true, noremap = true}
 
-local reveal = function()
-  nvim_tree.find_file(true)
+local find_file = function()
+  api.tree.toggle({ find_file = true })
 end
-vim.keymap.set("n", "<Leader>l", reveal, {silent = true, noremap = true})
+
+vim.keymap.set("n", "<C-b>", api.tree.toggle, map_options)
+vim.keymap.set("n", "<Leader>l", find_file, map_options)
