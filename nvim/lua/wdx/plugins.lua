@@ -175,14 +175,6 @@ return packer.startup {
 
     use 'onsails/lspkind-nvim'
 
-    -- Spell check
-    use {
-      'lewis6991/spellsitter.nvim',
-      config = function()
-        require('spellsitter').setup()
-      end
-    }
-
     -- Database management
     use 'tpope/vim-dadbod'
     use 'tpope/vim-dotenv'
