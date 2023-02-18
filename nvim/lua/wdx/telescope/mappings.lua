@@ -10,7 +10,7 @@ local map_tele = function(key, f, options, buffer)
   TelescopeMapArgs[map_key] = options or {}
 
   local mode = "n"
-  local rhs = string.format("<cmd>lua require('wdx.telescope')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
+  local rhs = string.format("<cmd>lua R('wdx.telescope')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
 
   local map_options = {
     noremap = true,
@@ -33,9 +33,8 @@ map_tele("<Leader>ht", "help_tags")
 map_tele("<Leader>sw", "grep_prompt")
 map_tele("<Leader>sq", "grep_string")
 -- map_tele("<Leader>sl", "live_grep")
--- TODO: in progress
--- map_tele("<Leader>fr", "laravel_routes")
+-- map_tele("<Leader>fr", "laravel_routes") -- TODO: in progress
 map_tele("<Leader>gr", "lsp_document_symbols")
-vim.api.nvim_set_keymap('n', "<Leader>tt", ':Telescope resume<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', "<Leader>tt", require('telescope.builtin').resume, map_options)
 
 return map_tele
