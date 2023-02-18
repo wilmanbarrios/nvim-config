@@ -23,6 +23,7 @@ opt.smartindent           = true
 opt.expandtab             = true
 
 opt.ignorecase            = true -- ignore command cases e.g. packerup -> PackerUpdate when hitting tab
+opt.smartcase             = true
 
 opt.cursorline            = true
 opt.wrap                  = false
@@ -47,8 +48,6 @@ opt.signcolumn            = 'yes'
 opt.pumheight             = 20
 
 opt.scrolloff             = 10
-
-opt.smartcase             = true
 
 opt.splitbelow            = true
 opt.splitright            = true
