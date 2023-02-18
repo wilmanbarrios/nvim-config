@@ -25,6 +25,8 @@ opt.tabstop               = 2
 opt.shiftwidth            = 2
 opt.softtabstop           = 2
 
+opt.ignorecase            = true -- ignore command cases e.g. packerup -> PackerUpdate when hitting tab
+
 opt.cursorline            = true
 opt.wrap                  = false
 
