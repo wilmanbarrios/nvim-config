@@ -21,9 +21,6 @@ g.loaded_node_provider    = 0
 opt.autoindent            = true
 opt.smartindent           = true
 opt.expandtab             = true
-opt.tabstop               = 2
-opt.shiftwidth            = 2
-opt.softtabstop           = 2
 
 opt.ignorecase            = true -- ignore command cases e.g. packerup -> PackerUpdate when hitting tab
 
