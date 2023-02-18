@@ -8,6 +8,13 @@ require'nvim-tree'.setup {
   view = {
     width = 41,
     side = "right",
+    mappings = {
+      custom_only = false,
+      list = {
+        { key = "h", action = "close_node" },
+        { key = "l", action = "edit" },
+      }
+    }
   },
 }
 
