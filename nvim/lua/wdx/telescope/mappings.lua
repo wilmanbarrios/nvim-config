@@ -27,14 +27,15 @@ end
 map_tele("<Leader>p",  "find_files")
 map_tele("<Leader>b",  "buffers")
 map_tele("<Leader>fd", "find_in_dotfiles")
-map_tele("<Leader>fg", "git_files")
-map_tele("<Leader>fv", "find_in_vendors")
+-- map_tele("<Leader>fg", "git_files") -- i almost never used this
+-- map_tele("<Leader>fv", "find_in_vendors") -- only for PHP code bases
 map_tele("<Leader>ht", "help_tags")
 map_tele("<Leader>sw", "grep_prompt")
 map_tele("<Leader>sq", "grep_string")
 -- map_tele("<Leader>sl", "live_grep")
+-- TODO: in progress
 -- map_tele("<Leader>fr", "laravel_routes")
 map_tele("<Leader>gr", "lsp_document_symbols")
-map_tele("<Leader>tt", "resume")
+vim.api.nvim_set_keymap('n', "<Leader>tt", ':Telescope resume<CR>', { noremap = true, silent = true })
 
 return map_tele
