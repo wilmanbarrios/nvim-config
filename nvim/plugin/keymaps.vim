@@ -17,6 +17,7 @@ nmap <Leader><Space> :nohls<CR>
 nnoremap <silent> <C-O> <C-O>zz
 nnoremap <silent> <C-I> <C-I>zz
 
+" show highlight group under cursor
 nmap <Leader>hg :TSH<CR>
 
 " move lines up/down in visual mode
