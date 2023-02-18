@@ -107,23 +107,15 @@ return packer.startup {
 
     -- LSP
     use 'neovim/nvim-lspconfig'
-    use {
-      'j-hui/fidget.nvim',
-      config = function()
-        require("fidget").setup()
-      end
-    }
-
     -- LSP UIs
-    use({
+    use {
       "glepnir/lspsaga.nvim",
       branch = "main",
       requires = {
         {"nvim-tree/nvim-web-devicons"},
         {"nvim-treesitter/nvim-treesitter"},
       }
-    })
-
+    }
     -- LSP completions
     use {
       'hrsh7th/nvim-cmp',
