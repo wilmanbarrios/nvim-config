@@ -24,90 +24,38 @@ packer.init {
 
 return packer.startup {
   function()
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-    use 'lewis6991/impatient.nvim'
+    use 'wbthomason/packer.nvim' -- Packer can manage itself
 
-    -- Show git signs in gutter
+    --- Telescope
     use {
-      'lewis6991/gitsigns.nvim',
+      'nvim-telescope/telescope.nvim',
       requires = {
-        'nvim-lua/plenary.nvim'
+        'nvim-lua/popup.nvim',
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-ui-select.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       }
     }
 
-    -- Pairs any (,{,[,",',`
+    --- Treesitter
     use {
-      'windwp/nvim-autopairs',
-      config = function()
-        require('nvim-autopairs').setup()
-      end
-    }
-
-    -- Improved window navigation between tmux panes and vim
-    use 'christoomey/vim-tmux-navigator'
-
-    -- -- Refactoring
-    -- use  {
-    --   'phpactor/phpactor',
-    --   ft = {'php'},
-    --   branch = 'master',
-    --   run = 'composer install --no-dev -o'
-    -- }
-
-    use {
-      "jose-elias-alvarez/null-ls.nvim",
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
       requires = {
-        {"nvim-lua/plenary.nvim"},
+        'nvim-treesitter/nvim-treesitter-refactor',
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        'nvim-treesitter/nvim-treesitter-context',
+        {
+          'nvim-treesitter/playground',
+          opt = true,
+          cmd = {'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor'}
+        },
       }
     }
 
-    use {
-      "ThePrimeagen/refactoring.nvim",
-      requires = {
-        {"nvim-lua/plenary.nvim"},
-        {"nvim-treesitter/nvim-treesitter"}
-      }
-    }
-
-    -- Git integration with vim
-    use 'tpope/vim-fugitive'
-    use 'tpope/vim-rhubarb'
-
-    use 'tpope/vim-surround'
-    use 'tpope/vim-unimpaired'
-
-    -- Commenting
-    use 'tpope/vim-commentary'
-    use 'JoosepAlviste/nvim-ts-context-commentstring'
-
-    -- File explorer
-    use {
-      'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons', -- optional, for file icon
-      },
-    }
-
-    -- Test Runner
-    use { 'vim-test/vim-test' }
-    use { 'benmills/vimux' }
-
-    -- Expand builtin text-objects
-    use 'wellle/targets.vim'
-
-    -- Emmet
-    use 'mattn/emmet-vim'
-
-    -- align stuffs
-    use { 'junegunn/vim-easy-align', opt = true, cmd = {'EasyAlign'} }
-
-    -- Snippets
-    use 'L3MON4D3/LuaSnip'
-
-    -- LSP
+    --- LSP
     use 'neovim/nvim-lspconfig'
-    -- LSP UIs
+    --- LSP UIs
     use {
       "glepnir/lspsaga.nvim",
       branch = "main",
@@ -116,7 +64,7 @@ return packer.startup {
         {"nvim-treesitter/nvim-treesitter"},
       }
     }
-    -- LSP completions
+    --- LSP completions
     use {
       'hrsh7th/nvim-cmp',
       requires = {
@@ -124,22 +72,96 @@ return packer.startup {
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-nvim-lsp',
         'saadparwaiz1/cmp_luasnip',
+        'onsails/lspkind-nvim', -- LSP completion kind
+      }
+    }
+    use 'L3MON4D3/LuaSnip' -- Snippets
+    use {
+      "jose-elias-alvarez/null-ls.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
       }
     }
 
-    -- Telescope
+    --- Statusline
     use {
-      'nvim-telescope/telescope.nvim',
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+
+    --- File explorer
+    use {
+      'kyazdani42/nvim-tree.lua',
       requires = {
-        'nvim-lua/popup.nvim',
+        'kyazdani42/nvim-web-devicons',
+      },
+    }
+
+    --- Refactoring
+    use {
+      "ThePrimeagen/refactoring.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter"
+      }
+    }
+    --- Another refactor tool only for PHP
+    use  {
+      'phpactor/phpactor',
+      ft = {'php'},
+      branch = 'master',
+      run = 'composer install --no-dev -o',
+      disable = true,
+    }
+
+    --- Git integration with vim
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-rhubarb' -- allow my to yank a link to specific lines in files with ease
+
+    --- Show git signs in gutter
+    use {
+      'lewis6991/gitsigns.nvim',
+      requires = {
         'nvim-lua/plenary.nvim'
       }
     }
-    use 'nvim-telescope/telescope-fzy-native.nvim'
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use 'nvim-telescope/telescope-ui-select.nvim'
 
+    --- Test Runner, run any kind of test suite with ease
+    use 'vim-test/vim-test'
+    use 'benmills/vimux'
+
+    --- Database management, visaul select any DB queries and run them on the fly
+    use 'tpope/vim-dadbod'
+    use 'tpope/vim-dotenv'
+
+    --- Miscellaneous
+    use 'lewis6991/impatient.nvim' -- improve nvim startuptime with caching config files
+    use 'tpope/vim-surround'
+    use 'tpope/vim-unimpaired' -- extra set of mapping
+    use 'wellle/targets.vim' -- Expand builtin text-objects
+    use 'mattn/emmet-vim' -- Emmet
+    use { 'junegunn/vim-easy-align', opt = true, cmd = {'EasyAlign'} } -- align stuffs
+    use 'tpope/vim-commentary' -- Commenting
+    use 'windwp/nvim-ts-autotag' -- auto close and rename html tags using treesitter
+    use 'JoosepAlviste/nvim-ts-context-commentstring' -- Change commentstring on the fly
+    use {'dstein64/vim-startuptime', opt = true, cmd = 'StartupTime'} -- Improved vim startuptime profiler
+    -- Pairs any (,{,[,",',`
+    use {
+      'windwp/nvim-autopairs',
+      config = function()
+        require('nvim-autopairs').setup()
+      end
+    }
+    use 'christoomey/vim-tmux-navigator' -- Improved window navigation between tmux panes and vim
+    -- Remove extra whitespaces, but only the ones that I add.
+    use {
+      'lewis6991/spaceless.nvim',
+      config = function()
+        require'spaceless'.setup()
+      end
+    }
     -- DevIcons integration with neovim
+    use 'ryanoasis/vim-devicons'
     use {
       'kyazdani42/nvim-web-devicons',
       config = function()
@@ -148,49 +170,8 @@ return packer.startup {
         }
       end
     }
-    use 'ryanoasis/vim-devicons'
 
-    -- Treessitter
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use {
-      'nvim-treesitter/playground',
-      opt = true,
-      cmd = {'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor'}
-    }
-    use 'nvim-treesitter/nvim-treesitter-refactor'
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use 'nvim-treesitter/nvim-treesitter-context'
-
-    -- auto close and rename html tags using treesitter
-    use 'windwp/nvim-ts-autotag'
-
-    -- Statusline
-    use {
-      'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
-
-    -- Improved vim startuptime profiler
-    use {'dstein64/vim-startuptime', opt = true, cmd = 'StartupTime'}
-
-    use 'onsails/lspkind-nvim'
-
-    -- Database management
-    use 'tpope/vim-dadbod'
-    use 'tpope/vim-dotenv'
-
-    use {
-      'lewis6991/spaceless.nvim',
-      config = function()
-        require'spaceless'.setup()
-      end
-    }
-
-    -- Colorschemes
-    use 'wilmanbarrios/palenight.nvim'
-    -- use '~/Code/Repos/github-nvim-theme'
-    use 'shaunsingh/nord.nvim'
-    use "ellisonleao/gruvbox.nvim"
+    --- Colorschemes
     use 'folke/tokyonight.nvim'
     use 'Mofiqul/vscode.nvim'
 
