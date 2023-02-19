@@ -109,11 +109,6 @@ _G.packer_plugins = {
     path = "/Users/developer/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
-  ["gruvbox.nvim"] = {
-    loaded = true,
-    path = "/Users/developer/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
-    url = "https://github.com/ellisonleao/gruvbox.nvim"
-  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/Users/developer/.local/share/nvim/site/pack/packer/start/impatient.nvim",
@@ -133,11 +128,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/developer/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["nord.nvim"] = {
-    loaded = true,
-    path = "/Users/developer/.local/share/nvim/site/pack/packer/start/nord.nvim",
-    url = "https://github.com/shaunsingh/nord.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -206,11 +196,6 @@ _G.packer_plugins = {
     path = "/Users/developer/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  ["palenight.nvim"] = {
-    loaded = true,
-    path = "/Users/developer/.local/share/nvim/site/pack/packer/start/palenight.nvim",
-    url = "https://github.com/wilmanbarrios/palenight.nvim"
-  },
   playground = {
     commands = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
     loaded = false,
@@ -249,11 +234,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/developer/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
-  },
-  ["telescope-fzy-native.nvim"] = {
-    loaded = true,
-    path = "/Users/developer/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
-    url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
   },
   ["telescope-ui-select.nvim"] = {
     loaded = true,
@@ -349,14 +329,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-web-devicons
-time([[Config for nvim-web-devicons]], true)
-try_loadstring("\27LJ\2\nO\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\fdefault\2\nsetup\22nvim-web-devicons\frequire\0", "config", "nvim-web-devicons")
-time([[Config for nvim-web-devicons]], false)
 -- Config for: spaceless.nvim
 time([[Config for spaceless.nvim]], true)
 try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14spaceless\frequire\0", "config", "spaceless.nvim")
 time([[Config for spaceless.nvim]], false)
+-- Config for: nvim-web-devicons
+time([[Config for nvim-web-devicons]], true)
+try_loadstring("\27LJ\2\nO\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\fdefault\2\nsetup\22nvim-web-devicons\frequire\0", "config", "nvim-web-devicons")
+time([[Config for nvim-web-devicons]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
@@ -364,19 +344,19 @@ time([[Config for nvim-autopairs]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'EasyAlign', function(cmdargs)
+          require('packer.load')({'vim-easy-align'}, { cmd = 'EasyAlign', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'vim-easy-align'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('EasyAlign ', 'cmdline')
+      end})
 pcall(vim.api.nvim_create_user_command, 'TSPlaygroundToggle', function(cmdargs)
           require('packer.load')({'playground'}, { cmd = 'TSPlaygroundToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'playground'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('TSPlaygroundToggle ', 'cmdline')
-      end})
-pcall(vim.api.nvim_create_user_command, 'StartupTime', function(cmdargs)
-          require('packer.load')({'vim-startuptime'}, { cmd = 'StartupTime', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'vim-startuptime'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('StartupTime ', 'cmdline')
       end})
 pcall(vim.api.nvim_create_user_command, 'TSHighlightCapturesUnderCursor', function(cmdargs)
           require('packer.load')({'playground'}, { cmd = 'TSHighlightCapturesUnderCursor', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
@@ -385,12 +365,12 @@ pcall(vim.api.nvim_create_user_command, 'TSHighlightCapturesUnderCursor', functi
           require('packer.load')({'playground'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('TSHighlightCapturesUnderCursor ', 'cmdline')
       end})
-pcall(vim.api.nvim_create_user_command, 'EasyAlign', function(cmdargs)
-          require('packer.load')({'vim-easy-align'}, { cmd = 'EasyAlign', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+pcall(vim.api.nvim_create_user_command, 'StartupTime', function(cmdargs)
+          require('packer.load')({'vim-startuptime'}, { cmd = 'StartupTime', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'vim-easy-align'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('EasyAlign ', 'cmdline')
+          require('packer.load')({'vim-startuptime'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('StartupTime ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 
