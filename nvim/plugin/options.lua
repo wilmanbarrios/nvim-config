@@ -19,7 +19,7 @@ g.loaded_node_provider    = 0
 
 -- options
 opt.spell                 = true
-opt.spelloptions:append('camel') --- if a word is CamelCased, assume "Cased" is a separate word
+opt.spelloptions          = { 'camel' } --- if a word is CamelCased, assume "Cased" is a separate word
 
 opt.autoindent            = true
 opt.smartindent           = true
