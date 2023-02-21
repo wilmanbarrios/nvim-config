@@ -20,8 +20,9 @@ require'nvim-tree'.setup {
 
 local map_options = {silent = true, noremap = true}
 
+--- open the current buffer on the tree, or focusing it if already open.
 local find_file = function()
-  api.tree.toggle({ find_file = true })
+  api.tree.open({ find_file = true })
 end
 
 vim.keymap.set("n", "<C-b>", api.tree.toggle, map_options)
