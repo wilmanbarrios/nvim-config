@@ -6,9 +6,22 @@ local t = ls.text_node
 local i = ls.insert_node
 local c = ls.choice_node
 
-ls.add_snippets("all", {
+ls.add_snippets({'php', 'javascript', 'typescript', 'typescriptreact'}, {
     s("todo",  fmt(
       "// TODO{}: {}",
+      {
+        c(1, {
+          t "(wilman)",
+          t ""
+        }),
+        i(0)
+      }
+    ))
+})
+
+ls.add_snippets('lua', {
+    s("todo",  fmt(
+      "-- TODO{}: {}",
       {
         c(1, {
           t "(wilman)",
