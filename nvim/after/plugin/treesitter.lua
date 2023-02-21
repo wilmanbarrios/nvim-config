@@ -20,6 +20,9 @@ require'nvim-treesitter.configs'.setup {
   autotag = {
     enable = true,
   },
+  context = {
+    enable = true,
+  },
   textobjects = {
     swap = {
       enable = true,
@@ -30,9 +33,6 @@ require'nvim-treesitter.configs'.setup {
         ["H"] = "@parameter.inner",
       },
     },
-  },
-  context = {
-    enable = true,
   },
 }
 
