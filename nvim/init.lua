@@ -12,8 +12,23 @@ R = function(name)
   return require(name)
 end
 
-require('wdx.plugins')
-require('wdx.colorscheme')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-require "wdx.telescope.setup"
-require "wdx.telescope.mappings"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup('wdx.plugins')
+-- require('wdx.colorscheme')
+
+-- require "wdx.telescope.setup"
+-- require "wdx.telescope.mappings"
