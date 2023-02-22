@@ -2,8 +2,11 @@ local api = require'nvim-tree.api'
 
 require'nvim-tree'.setup {
   filters = {
-    custom = {".git", "dotbot"},
-    exclude = {".env"}
+    dotfiles = false, -- show me all the . files
+    custom = { "^.git$" }, -- propertly exclude .git directory
+  },
+  git = {
+    ignore = false, -- show me all files ignored by git
   },
   view = {
     width = 41,
