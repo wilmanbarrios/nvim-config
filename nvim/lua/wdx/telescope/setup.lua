@@ -6,7 +6,7 @@ require("telescope").setup {
     prompt_prefix = " ",
     selection_caret = " ",
     dynamic_preview_title = true,
-    path_display = { "smart" },
+    -- path_display = { "smart" },
     mappings = {
       i = {
         ["<esc>"] = actions.close,
