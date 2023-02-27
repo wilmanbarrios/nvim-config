@@ -1,12 +1,14 @@
 return {
   {
     'hrsh7th/nvim-cmp',
+    event = "InsertEnter",
     dependencies = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp',
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind-nvim',
+      'windwp/nvim-autopairs',
       { "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip" } },
     },
     config = function()
@@ -65,5 +67,4 @@ return {
       cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done())
     end
   },
-
 }
