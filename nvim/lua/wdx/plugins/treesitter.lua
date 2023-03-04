@@ -10,7 +10,7 @@ set nofoldenable
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    build = '<cmd>TSUpdate<cr>',
+    build = ':TSUpdate',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-refactor',
       'nvim-treesitter/nvim-treesitter-textobjects',
