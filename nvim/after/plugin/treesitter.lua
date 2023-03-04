@@ -1,3 +1,5 @@
+-- TODO: fix folding for array and multi line function calls
+
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "javascript", "comment", 'css', 'diff', 'gitattributes',
   'gitcommit', 'graphql', 'help', 'html', 'jsdoc', 'json', 'lua', 'markdown',
@@ -6,37 +8,37 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
   },
-  -- indent = {
-  --   enable = true
-  -- },
-  -- context_commentstring = {
-  --   enable = true
-  -- },
-  -- refactor = {
-  --   highlight_definitions = {
-  --     enable = true
-  --   },
-  --   smart_rename = {
-  --     enable = true,
-  --   },
-  -- },
-  -- autotag = {
-  --   enable = true,
-  -- },
-  -- context = {
-  --   enable = true,
-  -- },
-  -- textobjects = {
-  --   swap = {
-  --     enable = true,
-  --     swap_next = {
-  --       ["L"] = "@parameter.inner",
-  --     },
-  --     swap_previous = {
-  --       ["H"] = "@parameter.inner",
-  --     },
-  --   },
-  -- },
+  indent = {
+    enable = true
+  },
+  context_commentstring = {
+    enable = true
+  },
+  refactor = {
+    highlight_definitions = {
+      enable = true
+    },
+    smart_rename = {
+      enable = true,
+    },
+  },
+  autotag = {
+    enable = true,
+  },
+  context = {
+    enable = true,
+  },
+  textobjects = {
+    swap = {
+      enable = true,
+      swap_next = {
+        ["L"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["H"] = "@parameter.inner",
+      },
+    },
+  },
 }
 
 vim.cmd[[
