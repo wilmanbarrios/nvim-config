@@ -11,6 +11,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-refactor',
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -76,7 +77,10 @@ return {
           },
         },
       },
-    }
+    },
+    config = function(_, opts)
+      require'nvim-treesitter.configs'.setup(opts)
+    end,
   },
   {
     'nvim-treesitter/playground',
