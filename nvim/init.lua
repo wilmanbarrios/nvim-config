@@ -28,7 +28,3 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup('wdx.plugins')
--- require('wdx.colorscheme')
-
--- require "wdx.telescope.setup"
--- require "wdx.telescope.mappings"
