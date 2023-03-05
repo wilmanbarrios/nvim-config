@@ -1,6 +1,7 @@
 return {
   {
     'nvim-lualine/lualine.nvim',
+    -- event = "VeryLazy", -- this is useful when used with a dashboard plugin
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
