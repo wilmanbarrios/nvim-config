@@ -1,5 +1,5 @@
 return {
-  'christoomey/vim-tmux-navigator', -- Improved window navigation between tmux panes and vim
+  { 'christoomey/vim-tmux-navigator', event = "VeryLazy" }, -- Improved window navigation between tmux panes and vim
   {
     'dstein64/vim-startuptime',
     cmd = 'StartupTime',
@@ -8,14 +8,14 @@ return {
     end,
   }, -- Improved vim startuptime profiler
   'lewis6991/impatient.nvim', -- improve nvim startuptime with caching config files
-  'lewis6991/spaceless.nvim',
-  'mattn/emmet-vim', -- Emmet
-  'ryanoasis/vim-devicons',
-  'tpope/vim-commentary', -- Commenting
-  'tpope/vim-surround', -- sorround things with things
-  'tpope/vim-unimpaired', -- extra set of mapping
-  'wellle/targets.vim', -- Expand builtin text-objects
-  'windwp/nvim-autopairs',
+  { 'lewis6991/spaceless.nvim', event = { "BufReadPre", "BufNewFile" } },
+  { 'mattn/emmet-vim', event = { "BufReadPre", "BufNewFile" } }, -- Emmet
+  -- 'ryanoasis/vim-devicons',
+  { 'tpope/vim-commentary', event = { "BufReadPre", "BufNewFile" } }, -- Commenting
+  { 'tpope/vim-surround', event = { "BufReadPre", "BufNewFile" } }, -- sorround things with things
+  { 'tpope/vim-unimpaired', event = { "BufReadPre", "BufNewFile" } }, -- extra set of mapping
+  { 'wellle/targets.vim', event = { "BufReadPre", "BufNewFile" } }, -- Expand builtin text-objects
+  { 'windwp/nvim-autopairs', event = { "BufReadPre", "BufNewFile" } },
   { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }, -- align stuffs
   {
     'nvim-tree/nvim-web-devicons',
