@@ -3,7 +3,7 @@ return {
     'tpope/vim-fugitive',
     cmd = { 'Git', 'G', 'GBrowse' },
     dependencies = {
-      'tpope/vim-rhubarb', -- allow my to yank a link to specific lines in files with ease
+      'tpope/vim-rhubarb',
     },
     keys = {
       { '<leader>gs', '<cmd>G<cr><C-w>o', desc = 'Git status page' },
@@ -11,7 +11,6 @@ return {
       { '<leader>gy', "<cmd>'<'>GBrowse!<CR>", desc = 'Get a link for currently highlighted region' },
     }
   },
-  --- Show git signs in gutter
   {
     'lewis6991/gitsigns.nvim',
     dependencies = {
