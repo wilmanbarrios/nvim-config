@@ -1,17 +1,6 @@
 -- leader key
 vim.g.mapleader = ' '
 
-pcall(require, "impatient")
-
-RELOAD = function(...)
-  return require("plenary.reload").reload_module(...)
-end
-
-R = function(name)
-  RELOAD(name)
-  return require(name)
-end
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
@@ -26,5 +15,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
+
+RELOAD = function(...)
+  return require("plenary.reload").reload_module(...)
+end
+
+R = function(name)
+  RELOAD(name)
+  return require(name)
+end
 
 require("lazy").setup('wdx.plugins')

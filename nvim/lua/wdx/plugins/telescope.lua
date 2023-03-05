@@ -1,6 +1,5 @@
 return {
   'nvim-telescope/telescope.nvim',
-  priority = 100,
   config = function()
     require "wdx.telescope.setup"
     require "wdx.telescope.mappings"

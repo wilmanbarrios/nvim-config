@@ -7,7 +7,6 @@ return {
       vim.g.startuptime_tries = 10
     end,
   }, -- Improved vim startuptime profiler
-  'lewis6991/impatient.nvim', -- improve nvim startuptime with caching config files
   { 'lewis6991/spaceless.nvim', event = { "BufReadPre", "BufNewFile" } },
   { 'mattn/emmet-vim', event = { "BufReadPre", "BufNewFile" } }, -- Emmet
   -- 'ryanoasis/vim-devicons',
