@@ -1,6 +1,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require('wdx.lsp')
     end
@@ -9,6 +10,7 @@ return {
   {
     "glepnir/lspsaga.nvim",
     branch = "main",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-tree/nvim-web-devicons",
       "nvim-treesitter/nvim-treesitter",
@@ -33,6 +35,7 @@ return {
 
   {
     "jose-elias-alvarez/null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
