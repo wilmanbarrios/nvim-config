@@ -16,6 +16,8 @@ return {
       'nvim-treesitter/nvim-treesitter-refactor',
       'nvim-treesitter/nvim-treesitter-textobjects',
       'nvim-treesitter/nvim-treesitter-context',
+      'JoosepAlviste/nvim-ts-context-commentstring', -- Change commentstring on the fly
+      'windwp/nvim-ts-autotag', -- auto close and rename html tags using treesitter
     },
     opts = {
       ensure_installed = {
