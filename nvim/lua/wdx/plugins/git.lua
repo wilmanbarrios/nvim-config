@@ -8,7 +8,7 @@ return {
     keys = {
       { '<leader>gs', '<cmd>G<cr><C-w>o', desc = 'Git status page' },
       { '<leader>gb', "<cmd>Git blame<CR>", desc = 'Git blame page' },
-      { '<leader>gy', "<cmd>'<'>GBrowse!<CR>", desc = 'Get a link for currently highlighted region' },
+      { mode = 'x', '<leader>gy', ":GBrowse!<CR>", desc = 'Get a link for currently highlighted region' },
     }
   },
   {
@@ -45,11 +45,9 @@ return {
         map('n', '<leader>hu', ':Gitsigns undo_state_hunk<CR>')
         map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
         map('n', '<leader>hd', ':Gitsigns preview_hunk<CR>')
-        map('n', '<leader>hd', ':Gitsigns toggle_current_line_blame<CR>')
+        map('n', '<leader>hb', ':Gitsigns toggle_current_line_blame<CR>')
         -- map('n', '<leader>hS', gs.stage_buffer)
         -- map('n', '<leader>hR', gs.reset_buffer)
-        -- map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-        map('n', '<leader>hd', ':Gitsigns toggle_current_line_blame<CR>')
         -- map('n', '<leader>hd', gs.diffthis)
         -- map('n', '<leader>hD', function() gs.diffthis('~') end)
         -- map('n', '<leader>td', gs.toggle_deleted)
