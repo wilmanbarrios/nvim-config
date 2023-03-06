@@ -46,14 +46,6 @@ return {
         map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
         map('n', '<leader>hd', ':Gitsigns preview_hunk<CR>')
         map('n', '<leader>hb', ':Gitsigns toggle_current_line_blame<CR>')
-        -- map('n', '<leader>hS', gs.stage_buffer)
-        -- map('n', '<leader>hR', gs.reset_buffer)
-        -- map('n', '<leader>hd', gs.diffthis)
-        -- map('n', '<leader>hD', function() gs.diffthis('~') end)
-        -- map('n', '<leader>td', gs.toggle_deleted)
-
-        -- Text object
-        -- map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
       end
     }
   },
