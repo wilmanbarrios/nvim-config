@@ -1,5 +1,9 @@
+require('wdx.globals')
+
 -- leader key
 vim.g.mapleader = ' '
+
+require('wdx.disable_builtin')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -16,13 +20,8 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-RELOAD = function(...)
-  return require("plenary.reload").reload_module(...)
-end
-
-R = function(name)
-  RELOAD(name)
-  return require(name)
-end
-
-require("lazy").setup('wdx.plugins')
+require("lazy").setup('wdx.plugins', {
+  install = { 
+    colorscheme = { "tokyonight", "habamax" } 
+  },
+})
