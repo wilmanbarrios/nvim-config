@@ -1,21 +1,4 @@
 local opt = vim.opt
-local g = vim.g
-
--- disable unused builtin plugins
-g.loaded_netrw            = 1
-g.loaded_netrwPlugin      = 1
-g.loaded_tar              = 1
-g.loaded_tarPlugin        = 1
-g.loaded_zip              = 1
-g.loaded_zipPlugin        = 1
-g.loaded_gzip             = 1
-
--- disable unused builtin providers
-g.loaded_ruby_provider    = 0
-g.loaded_perl_provider    = 0
-g.loaded_python_provider  = 0
-g.loaded_python3_provider = 0
-g.loaded_node_provider    = 0
 
 -- options
 opt.spell                 = true
