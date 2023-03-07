@@ -1,12 +1,3 @@
--- TODO: folding
---[[
-vim.cmd[[
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-" Disable folding at startup.
-set nofoldenable
-]]
---]]
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -82,6 +73,12 @@ return {
     },
     config = function(_, opts)
       require'nvim-treesitter.configs'.setup(opts)
+      vim.cmd[[
+        set foldmethod=expr
+        set foldexpr=nvim_treesitter#foldexpr()
+        " Disable folding at startup.
+        set nofoldenable
+      ]]
     end,
   },
   {
