@@ -8,7 +8,7 @@ return {
     keys = {
       { '<leader>gs', '<cmd>G<cr><C-w>o', desc = 'Git status page' },
       { '<leader>gb', "<cmd>Git blame<CR>", desc = 'Git blame page' },
-      { mode = 'x', '<leader>gy', ":GBrowse!<CR>", desc = 'Get a link for currently highlighted region' },
+      { mode = 'v', '<leader>gy', ":GBrowse!<CR>", desc = 'Get a link for currently highlighted region' },
     }
   },
   {
