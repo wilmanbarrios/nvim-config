@@ -14,7 +14,13 @@ return {
   { 'tpope/vim-surround', event = { "BufReadPre", "BufNewFile" } }, -- sorround things with things
   { 'tpope/vim-unimpaired', event = { "BufReadPre", "BufNewFile" } }, -- extra set of mapping
   { 'wellle/targets.vim', event = { "BufReadPre", "BufNewFile" } }, -- Expand builtin text-objects
-  { 'windwp/nvim-autopairs', event = { "BufReadPre", "BufNewFile" } },
+  { 
+    'windwp/nvim-autopairs',
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("nvim-autopairs").setup()
+    end
+  },
   { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }, -- align stuffs
   {
     'nvim-tree/nvim-web-devicons',
