@@ -58,9 +58,6 @@ return {
           { name = 'buffer', keyword_length = 3 },
           { name = 'path' },
         },
-        experimental = {
-          ghost_text = true,
-        }
       }
 
       -- If you want insert `(` after select function or method item
