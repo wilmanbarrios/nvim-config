@@ -1,5 +1,5 @@
-" save file
-nmap <Leader>w :w<CR>
+" save file only when we have changes to save
+nmap <Leader>w :up<CR>
 
 " quit file
 nmap <Leader>q :q<CR>
