@@ -4,6 +4,7 @@ require('wdx.globals')
 vim.g.mapleader = ' '
 
 require('wdx.disable_builtin')
+require('wdx.options')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 

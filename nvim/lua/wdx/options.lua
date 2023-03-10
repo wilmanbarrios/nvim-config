@@ -43,6 +43,6 @@ opt.splitright            = true
 
 opt.termguicolors         = true
 
-opt.updatetime            = 250
+opt.updatetime            = 550
 
 -- opt.shortmess:append("c") --- will test what is this affecting
