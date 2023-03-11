@@ -1,10 +1,21 @@
 return {
   'nvim-telescope/telescope.nvim',
+  version = false,
   dependencies = {
-    'nvim-lua/popup.nvim',
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-ui-select.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    { 
+      'nvim-telescope/telescope-ui-select.nvim',
+      config = function()
+        require("telescope").load_extension("ui-select")
+      end
+    },
+    { 
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make',
+      config = function()
+        require("telescope").load_extension("fzf")
+      end
+    },
   },
   opts = function()
     local actions = require "telescope.actions"
@@ -15,7 +26,6 @@ return {
         prompt_prefix = " ",
         selection_caret = " ",
         dynamic_preview_title = true,
-        -- path_display = { "smart" },
         mappings = {
           i = {
             ["<esc>"] = actions.close,
@@ -41,7 +51,8 @@ return {
       }
     }
   end,
-  config = function()
-    require "wdx.telescope.mappings"
+  config = function(_, opts)
+    require("telescope").setup(opts)
+    require("wdx.telescope.mappings")
   end,
 }

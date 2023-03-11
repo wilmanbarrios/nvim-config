@@ -1,14 +1,3 @@
-SHOULD_RELOAD_TELESCOPE = true
-
-local reloader = function()
-  if SHOULD_RELOAD_TELESCOPE then
-    RELOAD "plenary"
-    RELOAD "telescope"
-    RELOAD "wdx.telescope.setup"
-    RELOAD "nvim-web-devicons"
-  end
-end
-
 local themes = require "telescope.themes"
 
 local M = {}
@@ -82,8 +71,6 @@ end
 
 return setmetatable({}, {
   __index = function(_, k)
-    reloader()
-
     if M[k] then
       return M[k]
     else
