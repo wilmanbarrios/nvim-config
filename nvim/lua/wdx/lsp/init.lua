@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
   keymap("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   -- keymap("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
   keymap("n", "<Leader>ff", function()
-    vim.lsp.buf.format({ timeout_ms = 2000, bufnr = bufnr })
+    vim.lsp.buf.format({ timeout_ms = 2500, bufnr = bufnr })
   end, bufopts)
 
   --- LSP Saga
@@ -35,23 +35,23 @@ local on_attach = function(client, bufnr)
 
   -- disable `tsserver` formatting in favor of null-ls `prettierd` formatting
   if client.name == "tsserver" then
-    -- client.resolved_capabilities.document_formatting = false -- 0.7 and earlier
     client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
   end
 end
 
 local servers = {
-  tailwindcss = {},
-  intelephense = {
-    init_options = {
-      globalStoragePath = os.getenv("XDG_DATA_HOME") .. "/intelephense",
-      licenceKey = os.getenv("INTELEPHENSE_LICENCE_KEY"),
-    },
-  },
+  -- tailwindcss = {},
+  -- intelephense = {
+  --   init_options = {
+  --     globalStoragePath = os.getenv("XDG_DATA_HOME") .. "/intelephense",
+  --     licenceKey = os.getenv("INTELEPHENSE_LICENCE_KEY"),
+  --   },
+  -- },
   tsserver = {
     cmd = {
-      '/Users/developer/.local/share/nvm/versions/node/v14.16.0/bin/node',
-      '/Users/developer/.local/share/nvm/versions/node/v14.16.0/bin/typescript-language-server',
+      os.getenv("LSP_NODE_PATH") .. '/node',
+      os.getenv("LSP_NODE_PATH") .. '/typescript-language-server',
+      '--tsserver-path', os.getenv("LSP_NODE_PATH") .. '/tsserver',
       '--stdio'
     },
     commands = {
