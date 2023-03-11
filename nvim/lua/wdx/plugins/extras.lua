@@ -22,10 +22,4 @@ return {
     end
   },
   { 'junegunn/vim-easy-align', cmd = 'EasyAlign' }, -- align stuffs
-  {
-    'nvim-tree/nvim-web-devicons',
-    opts = {
-      default = true
-    }
-  },
 }
