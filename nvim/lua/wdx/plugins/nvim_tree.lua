@@ -24,6 +24,31 @@ return {
         }
       },
     },
+    config = function(_, opts)
+      require('nvim-tree').setup(opts)
+
+      local api = require('nvim-tree.api')
+      local Event = api.events.Event
+
+      local update_symlinks = function()
+        local has_dodbot = vim.fn.getcwd():match('nvim%-config') 
+
+        if not has_dodbot then
+          return
+        end
+
+        vim.schedule(function()
+          vim.fn.system({ './install', '-Q' })
+          vim.notify('symlinks installed!')
+        end)
+      end
+
+      api.events.subscribe(Event.NodeRenamed, update_symlinks)
+      api.events.subscribe(Event.FolderCreated, update_symlinks)
+      api.events.subscribe(Event.FolderRemoved, update_symlinks)
+      api.events.subscribe(Event.FileCreated, update_symlinks)
+      api.events.subscribe(Event.FileRemoved, update_symlinks)
+    end,
     keys = {
       {"<C-b>", '<cmd>NvimTreeToggle<cr>', desc = 'Open/close nvim-tree'},
       {
