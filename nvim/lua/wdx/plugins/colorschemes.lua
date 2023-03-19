@@ -7,7 +7,7 @@ return {
        return {
          style = 'night',
          on_highlights = function(hl, c)
-           hl["@text.todo"] = { fg = c.yellow, bg = util.darken(c.yellow, 0.2) }
+           hl.Todo = { fg = c.yellow, bg = util.darken(c.yellow, 0.2) }
            hl["@text.danger"] = { fg = c.error, bg = util.darken(c.error, 0.2) }
            hl["@comment"] = { fg = util.lighten(c.comment, 0.8) }
            hl.LineNr = { fg = util.lighten(c.comment, 1) }
