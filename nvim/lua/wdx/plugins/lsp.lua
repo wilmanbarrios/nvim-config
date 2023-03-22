@@ -4,6 +4,9 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require('wdx.lsp')
+      vim.g.markdown_fenced_languages = {
+        "ts=typescript"
+      }
     end
   },
 
