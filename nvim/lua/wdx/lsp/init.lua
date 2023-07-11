@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
   keymap("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   keymap("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
   keymap("n", "<Leader>ff", function()
-    vim.lsp.buf.format({ timeout_ms = 3000 })
+    vim.lsp.buf.format({ timeout_ms = 20000 })
   end, bufopts)
 
   --- LSP Saga
@@ -50,21 +50,23 @@ local servers = {
   --     licenceKey = os.getenv("INTELEPHENSE_LICENCE_KEY"),
   --   },
   -- },
-  -- denols = {
-  --   init_options = {
-  --     enable = true,
-  --     unstable = true,
-  --     suggest = {
-  --       imports = {
-  --         hosts = {
-  --           ["https://crux.land"] = false,
-  --           ["https://deno.land"] = false,
-  --           ["https://x.nest.land"] = false
-  --         }
-  --       }
-  --     }
-  --   }
-  -- },
+  denols = {
+    autostart = false,
+    init_options = {
+      enable = true,
+      unstable = true,
+      suggest = {
+        imports = {
+          hosts = {
+            ["https://crux.land"] = false,
+            ["https://deno.land"] = false,
+            ["https://x.nest.land"] = false
+          }
+        }
+      }
+    }
+  },
+  eslint = {},
   tsserver = {
     cmd = {
       os.getenv("LSP_NODE_PATH") .. '/node',
