@@ -9,6 +9,8 @@ return {
       { '<leader>gs', '<cmd>G<cr><C-w>o', desc = 'Git status page' },
       { '<leader>gb', "<cmd>Git blame<CR>", desc = 'Git blame page' },
       { mode = 'x', '<leader>gy', ":GBrowse!<CR>", desc = 'Get a link for currently highlighted region' },
+      -- TODO: create a command that given a branch name will produce a well
+      -- formatted branch name
     }
   },
   {
