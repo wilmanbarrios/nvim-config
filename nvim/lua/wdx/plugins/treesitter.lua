@@ -11,7 +11,7 @@ return {
     },
     opts = {
       ensure_installed = {
-        "comment", -- possibly slowing down TS
+        "comment",
         "javascript",
         'bash',
         'css',
@@ -23,7 +23,6 @@ return {
         'git_rebase',
         'gitignore',
         'graphql',
-        'help',
         'html',
         'jsdoc',
         'json',
