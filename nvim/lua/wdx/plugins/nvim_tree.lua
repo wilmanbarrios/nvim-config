@@ -68,7 +68,7 @@ return {
         {
           "<Leader>l",
           function()
-            api.tree.find_file({ open = true })
+            api.tree.find_file({ open = true, focus = true })
           end,
           desc = 'Open the current buffer on the tree, or focusing it if already open.'
         },
