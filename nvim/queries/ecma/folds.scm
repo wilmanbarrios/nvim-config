@@ -1,0 +1,7 @@
+; extends
+
+[
+  (array)
+  (arguments)
+] @fold
+
