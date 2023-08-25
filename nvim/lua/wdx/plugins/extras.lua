@@ -46,4 +46,12 @@ return {
     main = 'colorizer',
     config = true,
   },
+
+  {
+    'johmsalas/text-case.nvim',
+    main = 'textcase',
+    keys = {
+      { mode = {'n', 'v'}, "<leader>ctc", "<cmd>lua require('textcase').current_word('to_camel_case')<CR>", desc = "[c]ase [t]o [c]amelCase" },
+    }
+  }
 }
