@@ -6,11 +6,10 @@ return {
       "nvim-treesitter/nvim-treesitter"
     },
     keys = {
-      { "<leader>rc", ":lua require('refactoring').debug.print_var({ below = false })<CR>" },
-      { mode = 'v', "<leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]] },
-      { mode = 'v', "<leader>rv", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]] },
-      { mode = 'v', "<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]] },
-      { mode = 'v', "<leader>rc", ":lua require('refactoring').debug.print_var({ normal = true, below = false })<CR>" },
+      -- { "<leader>rc", ":lua require('refactoring').debug.print_var({ below = false })<CR>" },
+      -- { mode = 'v', "<leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]] },
+      { mode = 'x', "<leader>rv", ':Refactor extract_var ' },
+      -- { mode = 'v', "<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]] },
     }
   },
 
