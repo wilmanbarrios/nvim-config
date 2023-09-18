@@ -37,26 +37,24 @@ return {
   },
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "pmizio/typescript-tools.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  },
+
+  {
+    'mfussenegger/nvim-lint',
     config = function()
-      local null_ls = require("null-ls")
+      require('lint').linters_by_ft = {
+        javascript = {'eslint_d'},
+        typescript = {'eslint_d'},
+        typescriptreact = {'eslint_d'},
+      }
 
-      null_ls.setup({
-        sources = {
-          --- Prettier
-          null_ls.builtins.formatting.prettierd,
-          
-          -- TODO: lua formating
-
-          -- Eslint
-          -- null_ls.builtins.diagnostics.eslint_d,
-          -- null_ls.builtins.code_actions.eslint_d,
-          -- null_ls.builtins.formatting.eslint_d,
-        },
+      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+        callback = function()
+          require("lint").try_lint()
+        end,
       })
     end
   },

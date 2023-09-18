@@ -25,4 +25,7 @@ require("lazy").setup('wdx.plugins', {
   install = { 
     colorscheme = { "tokyonight", "habamax" } 
   },
+  change_detection = {
+    notify = false, -- get a notification when changes are found
+  },
 })
