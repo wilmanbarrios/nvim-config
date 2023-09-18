@@ -1,11 +1,11 @@
 return {
   {
-    'folke/tokyonight.nvim',
+    "folke/tokyonight.nvim",
     priority = 1000,
     opts = function()
       local util = require("tokyonight.util")
       return {
-        style = 'night',
+        style = "night",
         on_highlights = function(hl, c)
           hl.GitBranch = { fg = c.blue, bg = c.bg_statusline }
           hl.Todo = { fg = c.yellow, bg = util.darken(c.yellow, 0.2) }
@@ -16,15 +16,15 @@ return {
       }
     end,
     config = function(_, opts)
-      require('tokyonight').setup(opts)
-      vim.cmd.colorscheme('tokyonight')
+      require("tokyonight").setup(opts)
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
   {
-    'Mofiqul/vscode.nvim',
+    "Mofiqul/vscode.nvim",
     -- priority = 1000,
     config = function(_, opts)
-      local c = require('vscode.colors').get_colors()
+      local c = require("vscode.colors").get_colors()
       require("vscode").setup({
         italic_comments = true,
         disable_nvimtree_bg = true,
@@ -32,25 +32,47 @@ return {
           -- vscBack = '#000000',
         },
         group_overrides = {
-          ['@variable'] = { fg = c.vscBlue, bg = c.none },
-          ['@variable.builtin'] = { fg = c.vscBlue, bg = c.none },
+          ["@variable"] = { fg = c.vscBlue, bg = c.none },
+          ["@variable.builtin"] = { fg = c.vscBlue, bg = c.none },
 
-          ['@lsp.typemod.variable.defaultLibrary'] = { link = '@type' },
-          ['@lsp.typemod.type.defaultLibrary'] = { link = '@type' },
-          ['@lsp.typemod.variable'] = { link = '@variable' },
+          ["@lsp.typemod.variable.defaultLibrary"] = {
+            link = "@type",
+          },
+          ["@lsp.typemod.type.defaultLibrary"] = { link = "@type" },
+          ["@lsp.typemod.variable"] = { link = "@variable" },
           -- ['@lsp.typemod.variable.declaration'] = { link = '@variable' },
 
           -- spell
-          SpellBad = { fg = c.none, bg = c.none, undercurl = true, sp = c.vscRed },
-          SpellCap = { fg = c.none, bg = c.none, undercurl = true, sp = c.vscRed },
-          SpellRare = { fg = c.none, bg = c.none, undercurl = true, sp = c.vscRed },
-          SpellLocal = { fg = c.none, bg = c.none, undercurl = true, sp = c.vscRed },
+          SpellBad = {
+            fg = c.none,
+            bg = c.none,
+            undercurl = true,
+            sp = c.vscRed,
+          },
+          SpellCap = {
+            fg = c.none,
+            bg = c.none,
+            undercurl = true,
+            sp = c.vscRed,
+          },
+          SpellRare = {
+            fg = c.none,
+            bg = c.none,
+            undercurl = true,
+            sp = c.vscRed,
+          },
+          SpellLocal = {
+            fg = c.none,
+            bg = c.none,
+            undercurl = true,
+            sp = c.vscRed,
+          },
 
-          ModeMsg ={ fg = c.vsFront, bg = c.none },
-          WarningMsg ={ fg = c.vscYellowOrange, bg = c.none },
+          ModeMsg = { fg = c.vsFront, bg = c.none },
+          WarningMsg = { fg = c.vscYellowOrange, bg = c.none },
 
           -- GitBranch = { fg = c.blue, bg = c.bg_statusline }
-        }
+        },
       })
       -- require('vscode').load()
     end,
@@ -63,5 +85,5 @@ return {
       require("catppuccin").setup({})
       -- vim.cmd.colorscheme('catppuccin-mocha')
     end,
-  }
+  },
 }

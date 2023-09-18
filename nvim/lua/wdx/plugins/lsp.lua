@@ -1,13 +1,13 @@
 return {
   {
-    'neovim/nvim-lspconfig',
+    "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require('wdx.lsp')
+      require("wdx.lsp")
       vim.g.markdown_fenced_languages = {
-        "ts=typescript"
+        "ts=typescript",
       }
-    end
+    end,
   },
 
   {
@@ -21,7 +21,7 @@ return {
     opts = {
       ui = {
         title = false,
-        border = 'rounded',
+        border = "rounded",
       },
       lightbulb = {
         enable = true,
@@ -31,9 +31,9 @@ return {
         virtual_text = false,
       },
       symbol_in_winbar = {
-        enable = false
+        enable = false,
       },
-    }
+    },
   },
 
   {
@@ -43,12 +43,12 @@ return {
   },
 
   {
-    'mfussenegger/nvim-lint',
+    "mfussenegger/nvim-lint",
     config = function()
-      require('lint').linters_by_ft = {
-        javascript = {'eslint_d'},
-        typescript = {'eslint_d'},
-        typescriptreact = {'eslint_d'},
+      require("lint").linters_by_ft = {
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
       }
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -56,6 +56,6 @@ return {
           require("lint").try_lint()
         end,
       })
-    end
+    end,
   },
 }

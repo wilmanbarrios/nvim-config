@@ -1,10 +1,10 @@
-require('wdx.globals')
+require("wdx.globals")
 
 -- leader key
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
-require('wdx.disable_builtin')
-require('wdx.options')
+require("wdx.disable_builtin")
+require("wdx.options")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -21,9 +21,9 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup('wdx.plugins', {
-  install = { 
-    colorscheme = { "tokyonight", "habamax" } 
+require("lazy").setup("wdx.plugins", {
+  install = {
+    colorscheme = { "tokyonight", "habamax" },
   },
   change_detection = {
     notify = false, -- get a notification when changes are found

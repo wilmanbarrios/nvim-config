@@ -1,19 +1,19 @@
 return {
-  'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     options = {
       globalstatus = true,
-      theme = 'auto',
-      component_separators = { left = '', right = '|'},
-      section_separators = { left = '', right = ''},
+      theme = "auto",
+      component_separators = { left = "", right = "|" },
+      section_separators = { left = "", right = "" },
       disabled_filetypes = {
         winbar = {
-          'fugitive',
-          'gitcommit',
-          'NvimTree',
-          'dashboard',
-          '',
+          "fugitive",
+          "gitcommit",
+          "NvimTree",
+          "dashboard",
+          "",
         },
       },
     },
@@ -21,16 +21,16 @@ return {
       lualine_a = {},
       lualine_b = {},
       lualine_c = {
-        '[[👉]]',
+        "[[👉]]",
         {
-          'filetype',
+          "filetype",
           icon_only = true,
           colored = true,
         },
         {
-          'filename',
+          "filename",
           path = 1,
-          file_status = true
+          file_status = true,
         },
       },
     },
@@ -38,16 +38,16 @@ return {
       lualine_a = {},
       lualine_b = {},
       lualine_c = {
-        '[[  ]]', -- just a placeholder to prevent text jumpings
+        "[[  ]]", -- just a placeholder to prevent text jumpings
         {
-          'filetype',
+          "filetype",
           icon_only = true,
           colored = true,
         },
         {
-          'filename',
+          "filename",
           path = 1,
-          file_status = true
+          file_status = true,
         },
       },
     },
@@ -55,19 +55,19 @@ return {
       lualine_a = {},
       lualine_b = {
         {
-          'branch',
-          color = 'GitBranch',
-        }
+          "branch",
+          color = "GitBranch",
+        },
       },
       lualine_c = {},
       lualine_x = {
-        'diff',
-        'diagnostics',
-        'location',
-        'progress',
+        "diff",
+        "diagnostics",
+        "location",
+        "progress",
       },
       lualine_y = {},
       lualine_z = {},
     },
-  }
+  },
 }

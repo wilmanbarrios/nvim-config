@@ -1,14 +1,14 @@
 return {
-  'nvim-telescope/telescope.nvim',
+  "nvim-telescope/telescope.nvim",
   version = false,
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-ui-select.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope-ui-select.nvim",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   opts = function()
-    local actions = require "telescope.actions"
-    local themes = require "telescope.themes"
+    local actions = require("telescope.actions")
+    local themes = require("telescope.themes")
 
     return {
       defaults = {
@@ -26,18 +26,18 @@ return {
       },
       extensions = {
         fzf = {
-          fuzzy = true,                    -- false will only do exact matching
-          override_generic_sorter = true,  -- override the generic sorter
-          override_file_sorter = true,     -- override the file sorter
+          fuzzy = true, -- false will only do exact matching
+          override_generic_sorter = true, -- override the generic sorter
+          override_file_sorter = true, -- override the file sorter
         },
         ["ui-select"] = {
-          themes.get_ivy {
+          themes.get_ivy({
             layout_config = {
               height = 10,
             },
-          }
+          }),
         },
-      }
+      },
     }
   end,
   config = function(_, opts)

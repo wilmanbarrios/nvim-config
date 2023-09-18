@@ -17,6 +17,10 @@ nmap <Leader><Space> :nohls<CR>
 nnoremap <silent> <C-O> <C-O>zz
 nnoremap <silent> <C-I> <C-I>zz
 
+" TODO: highlight word under the cursor
+" vim.fn.expand("<cword>")
+" how to pass
+nnoremap <Leader>hw :/expand('<cword>')
 
 " show highlight group under cursor
 nmap <Leader>hg :Inspect<CR>

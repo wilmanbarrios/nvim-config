@@ -1,42 +1,42 @@
-local current_theme = os.getenv('CODE_THEME')
+local current_theme = os.getenv("CODE_THEME")
 
 local colorschemes = {
-  palenight = function ()
-    vim.cmd.colorscheme('palenight')
+  palenight = function()
+    vim.cmd.colorscheme("palenight")
   end,
-  gruvbox_light = function ()
-    vim.o.background = 'light'
-    vim.cmd.colorscheme('gruvbox')
+  gruvbox_light = function()
+    vim.o.background = "light"
+    vim.cmd.colorscheme("gruvbox")
   end,
-  gruvbox = function ()
-    vim.o.background = 'dark'
-    vim.cmd.colorscheme('gruvbox')
+  gruvbox = function()
+    vim.o.background = "dark"
+    vim.cmd.colorscheme("gruvbox")
   end,
-  nord = function ()
-    vim.cmd.colorscheme('nord')
+  nord = function()
+    vim.cmd.colorscheme("nord")
   end,
-  tokyonight = function ()
+  tokyonight = function()
     local util = require("tokyonight.util")
 
     require("tokyonight").setup({
-      style = 'night',
+      style = "night",
       on_highlights = function(hl, c)
         hl["@text.todo"] = { fg = c.yellow, bg = util.darken(c.yellow, 0.1) }
         hl["@text.danger"] = { fg = c.error, bg = util.darken(c.error, 0.1) }
         hl["@comment"] = { fg = util.lighten(c.comment, 0.8) }
       end,
     })
-    vim.cmd.colorscheme('tokyonight')
+    vim.cmd.colorscheme("tokyonight")
   end,
-  vscode = function ()
-    vim.o.background = 'dark'
-    require('vscode').setup({
+  vscode = function()
+    vim.o.background = "dark"
+    require("vscode").setup({
       italic_comments = true,
     })
   end,
-  vscode_light = function ()
-    vim.o.background = 'light'
-    require('vscode').setup({
+  vscode_light = function()
+    vim.o.background = "light"
+    require("vscode").setup({
       italic_comments = true,
     })
   end,
@@ -50,16 +50,16 @@ end
 
 function change_colorscheme()
   local options = {}
-  for k,v in pairs(colorschemes) do
+  for k, v in pairs(colorschemes) do
     options[#options + 1] = k
   end
 
   vim.ui.select(options, {
-    prompt = 'Color Schemes:',
+    prompt = "Color Schemes:",
   }, function(choice)
-      colorschemes[choice]()
-      RELOAD 'wdx.colorscheme'
-    end)
+    colorschemes[choice]()
+    RELOAD("wdx.colorscheme")
+  end)
 end
 
-vim.keymap.set('n', '<Leader>cs', change_colorscheme)
+vim.keymap.set("n", "<Leader>cs", change_colorscheme)
