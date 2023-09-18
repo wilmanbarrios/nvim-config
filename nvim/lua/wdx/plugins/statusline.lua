@@ -56,7 +56,7 @@ return {
       lualine_b = {
         {
           'branch',
-          color = '@character',
+          color = 'GitBranch',
         }
       },
       lualine_c = {},
