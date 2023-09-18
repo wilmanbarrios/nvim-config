@@ -67,6 +67,7 @@ return {
       },
       context = {
         enable = true,
+        max_lines = 10, -- How many lines the window should span. Values <= 0 mean no limit.
       },
       textobjects = {
         swap = {
@@ -87,9 +88,5 @@ return {
       vim.o.foldlevelstart = 99
       vim.o.foldenable = false
     end,
-  },
-  {
-    'nvim-treesitter/playground',
-    cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' }
   },
 }

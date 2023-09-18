@@ -17,8 +17,10 @@ nmap <Leader><Space> :nohls<CR>
 nnoremap <silent> <C-O> <C-O>zz
 nnoremap <silent> <C-I> <C-I>zz
 
+
 " show highlight group under cursor
-nmap <Leader>hg :TSH<CR>
+nmap <Leader>hg :Inspect<CR>
+nmap <Leader>hp :InspectTree<CR>
 
 " move lines up/down in visual mode
 vmap J :m '>+1<CR>gv=gv
@@ -30,5 +32,6 @@ vmap <Leader>j :j<CR>
 vnoremap <Leader>y "+y
 nnoremap <Leader>y "+y
 
-inoremap ;; <esc>A;<esc>
-inoremap ,, <esc>A,<esc>
+" inoremap ;; <esc>A;<esc>
+" inoremap ,, <esc>A,<esc>
+
