@@ -1,4 +1,5 @@
--- TODO(wilman): describe
+--- Automatically runs `./install` when a new file/directory is
+--- Added/Rename/Deleted
 local register_listeners = function()
   local api = require("nvim-tree.api")
   local Event = api.events.Event
