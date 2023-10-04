@@ -1,13 +1,25 @@
+--- highlight text on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+  pattern = "*",
+  callback = function()
+    require("vim.highlight").on_yank()
+  end,
+})
+
+-- TODO: do I really need this autocmd?
+-- vim.api.nvim_create_autocmd("VimResized", {
+--   pattern = "*",
+--   command = "wincmd =",
+-- })
+
 --- Workaround to fix folds when using telescope to open a file
+local disabled_fts = { "gitcommit", "fugitive" }
 vim.api.nvim_create_autocmd("BufRead", {
   callback = function()
-    -- TODO: improve this conditions
-    if vim.bo.filetype == "gitcommit" then
+    if vim.tbl_contains(disabled_fts, vim.bo.filetype) then
       return
     end
-    if vim.bo.filetype == "fugitive" then
-      return
-    end
+
     vim.api.nvim_create_autocmd("BufWinEnter", {
       once = true,
       command = "normal! zx | zR",
@@ -15,7 +27,7 @@ vim.api.nvim_create_autocmd("BufRead", {
   end,
 })
 
-local function branch_name()
+local function get_current_branch()
   local branch =
     vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
   if branch ~= "" then
@@ -30,7 +42,11 @@ end
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
   callback = function(ev)
-    if string.find(ev.file, "COOP") and branch_name() ~= "develop" then
+    local is_coop_repo = string.find(ev.file, "COOP")
+    local ignore_branchs = { "develop", "master", "main" }
+    local is_ignored = vim.tbl_contains(ignore_branchs, get_current_branch())
+
+    if is_coop_repo and not is_ignored then
       vim.api.nvim_feedkeys("4jf/wveeeyggPa: ", "n", true)
     end
   end,
