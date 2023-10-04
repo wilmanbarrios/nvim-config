@@ -66,6 +66,7 @@ return {
   {
     "j-hui/fidget.nvim",
     main = "fidget",
+    config = true,
     event = { "BufReadPre", "BufNewFile" },
     tag = "legacy",
     -- -- I have a set of customizations to properly ignore code_actions so I don't

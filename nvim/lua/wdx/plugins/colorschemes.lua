@@ -23,7 +23,7 @@ return {
   {
     "Mofiqul/vscode.nvim",
     -- priority = 1000,
-    config = function(_, opts)
+    config = function()
       local c = require("vscode.colors").get_colors()
       require("vscode").setup({
         italic_comments = true,
@@ -81,7 +81,7 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     -- lazy = true,
-    config = function(_, opts)
+    config = function()
       require("catppuccin").setup({})
       -- vim.cmd.colorscheme('catppuccin-mocha')
     end,
