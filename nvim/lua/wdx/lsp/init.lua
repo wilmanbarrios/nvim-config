@@ -92,4 +92,7 @@ require("typescript-tools").setup({
 
     on_attach(...)
   end,
+  settings = {
+    tsserver_path = os.getenv("LSP_NODE_PATH") .. "/tsserver",
+  },
 })
