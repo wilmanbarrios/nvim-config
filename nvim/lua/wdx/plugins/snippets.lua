@@ -3,6 +3,7 @@ return {
   config = function()
     local ls = require("luasnip")
     local fmt = require("luasnip.extras.fmt").fmt
+    local fmta = require("luasnip.extras.fmt").fmta
     local s = ls.s
     local t = ls.text_node
     local i = ls.insert_node
@@ -31,14 +32,57 @@ return {
           i(0),
         })
       ),
+    })
 
-      --- wrap visual selected code in a try...catch block
+    local javascript = {
       s(
-        { trig = "wtry", dscr = "Wrap in a try...catch block" },
+        { trig = "fn", dscr = "Insert function block" },
+        c(1, {
+          fmta(
+            [[
+              const <name> = <async>(<params>) =>> {
+                <content>
+              }<finish>
+            ]],
+            {
+              name = i(1),
+              async = c(2, {
+                t(""),
+                t("async "),
+              }),
+              params = i(3),
+              content = i(4),
+              finish = i(5),
+            }
+          ),
+          fmta(
+            [[
+              <async>function <name>(<params>) {
+                <content>
+              }<finish>
+            ]],
+            {
+              name = i(1),
+              async = c(2, {
+                t(""),
+                t("async "),
+              }),
+              params = i(3),
+              content = i(4),
+              finish = i(5),
+            }
+          ),
+        })
+      ),
+
+      --- if we have a visual selection wrap it in a try...catch block and when
+      --- we don't have a anything visual selected, just add a try...catch block
+      s(
+        { trig = "try", dscr = "Insert try...catch block" },
         fmt(
           [[
            try {{
-             {}
+             {}{}
            }} catch (err) {{
              {}
            }}
@@ -47,65 +91,60 @@ return {
             isn(1, {
               f(get_visual_selection),
             }, "$PARENT_INDENT\t"),
-            i(2, "console.log(err)"),
+            i(2),
+            i(3),
           }
         )
       ),
 
-      --- wrap visual selected code in a if block
+      --- if we have a visual selection wrap it in a if block and when
+      --- we don't have a anything visual selected, just add a if block
       s(
-        { trig = "wif", dscr = "Wrap in a if block" },
+        { trig = "if", dscr = "Insert if block" },
         fmt(
           [[
            if ({}) {{
-             {}
+             {}{}
            }}
           ]],
           {
-            i(1, "true"),
+            i(1),
             isn(2, {
               f(get_visual_selection),
             }, "$PARENT_INDENT\t"),
+            i(3),
           }
         )
       ),
+    }
+
+    ls.add_snippets(nil, {
+      javascript = javascript,
+      typescript = javascript,
+      typescriptreact = javascript,
     })
 
-    -- expand snippet
+    -- expand snippet or jump to next stop
     vim.keymap.set("i", "<Tab>", function()
-      print("hit!")
       if ls.expand_or_jumpable() then
-        print("expanding...")
         return "<Plug>luasnip-expand-or-jump"
       else
         return "<Tab>"
       end
     end, { silent = true, expr = true })
 
-    -- TODO(wilman): you are using this?
+    -- jump to previous stop
     vim.keymap.set("i", "<S-Tab>", function()
-      print("you are using a mapping that you think that you don't use (:...")
       if ls.expand_or_jumpable() then
         ls.jump(-1)
       end
     end, { silent = true, noremap = true })
 
-    -- next choice
-    vim.keymap.set("i", "<C-j>", function()
+    -- toggle choices
+    vim.keymap.set({ "i", "s" }, "<C-j>", function()
       if ls.choice_active() then
-        return "<Plug>luasnip-next-choice"
-      else
-        return "<C-j>"
+        ls.change_choice(1)
       end
-    end, { silent = true, noremap = true, expr = true })
-
-    -- prev choice
-    vim.keymap.set("i", "<C-k>", function()
-      if ls.choice_active() then
-        return "<Plug>luasnip-prev-choice"
-      else
-        return "<C-k>"
-      end
-    end, { silent = true, noremap = true, expr = true })
+    end, { silent = true })
   end,
 }
