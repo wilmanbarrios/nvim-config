@@ -26,7 +26,7 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
+            behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }),
         }),
@@ -38,16 +38,42 @@ return {
           completeopt = "menu,menuone,noinsert",
         },
         formatting = {
-          format = lspkind.cmp_format({
-            mode = "symbol_text", -- show only symbol annotations
-            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-          }),
+          format = function(entry, vim_item)
+            local formatter = lspkind.cmp_format({
+              mode = "symbol_text", -- show only symbol annotations
+              maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+              ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            })
+            local output = formatter(entry, vim_item)
+            output.menu = string.format(
+              "[offset->%s,exact->%s,score->%s,kind->%s,order->%s]",
+              entry:get_offset(),
+              entry.exact,
+              entry.score,
+              entry:get_kind(),
+              entry.id
+            )
+            return output
+          end,
+        },
+        sorting = {
+          comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            -- cmp.config.compare.scopes,
+            cmp.config.compare.score,
+            cmp.config.compare.kind,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            -- cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+          },
         },
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-        }, {
           { name = "luasnip" },
+        }, {
           { name = "buffer", keyword_length = 5 },
           { name = "path" },
         }),
