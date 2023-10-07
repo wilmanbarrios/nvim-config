@@ -105,5 +105,7 @@ return {
   {
     "ray-x/lsp_signature.nvim",
     event = { "BufReadPre", "BufNewFile" },
+    main = "lsp_signature",
+    config = true,
   },
 }
