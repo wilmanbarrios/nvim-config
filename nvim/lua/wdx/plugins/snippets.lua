@@ -19,17 +19,33 @@ return {
       return parent.snippet.env.LS_SELECT_DEDENT or {}
     end
 
-    -- TODO(wilman): get the commentstring of the file/location where the todo
-    -- comment snippet is called and add it to the snippet
+    local function commentstring()
+      local cs = require("ts_context_commentstring").calculate_commentstring()
+
+      if cs == nil then
+        return nil
+      end
+
+      local parts = vim.split(cs, " ")
+
+      return { left = parts[1], right = parts[3] or "" }
+    end
+
     ls.add_snippets("all", {
       s(
         "todo",
-        fmt("// TODO{}: {}", {
-          c(1, {
+        fmta("<left_commentstring> TODO<type>: <text> <right_commentstring>", {
+          left_commentstring = f(function()
+            return commentstring().left
+          end),
+          type = c(1, {
             t("(wilman)"),
             t(""),
           }),
-          i(0),
+          text = i(2),
+          right_commentstring = f(function()
+            return commentstring().right
+          end),
         })
       ),
     })

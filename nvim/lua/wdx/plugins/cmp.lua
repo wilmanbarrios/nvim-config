@@ -10,7 +10,7 @@ return {
       "onsails/lspkind-nvim",
       "windwp/nvim-autopairs",
       "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip", -- i'm not using snippets too often
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       local cmp = require("cmp")
