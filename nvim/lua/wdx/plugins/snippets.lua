@@ -72,12 +72,12 @@ return {
               }<finish>
             ]],
             {
-              name = i(1),
+              name = r(1, "fn_name"),
               async = c(2, {
                 t(""),
                 t("async "),
               }),
-              params = i(3),
+              params = r(3, "fn_params"),
               content = i(4),
               finish = i(5),
             }
@@ -89,12 +89,12 @@ return {
               }<finish>
             ]],
             {
-              name = i(1),
+              name = r(1, "fn_name"),
               async = c(2, {
                 t(""),
                 t("async "),
               }),
-              params = i(3),
+              params = r(3, "fn_params"),
               content = i(4),
               finish = i(5),
             }
