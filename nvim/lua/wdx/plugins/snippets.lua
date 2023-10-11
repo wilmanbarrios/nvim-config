@@ -10,6 +10,7 @@ return {
     local c = ls.choice_node
     local f = ls.function_node
     local isn = ls.indent_snippet_node
+    local r = ls.restore_node
 
     ls.config.setup({
       store_selection_keys = "<Tab>",
@@ -51,6 +52,16 @@ return {
     })
 
     local javascript = {
+      s(
+        "log",
+        fmta([[console.log(<>)]], {
+          c(1, {
+            fmta([["\n\n\n", {<>}]], { r(1, "variable") }),
+            fmta([[JSON.stringify({<>}, null, 2)]], { r(1, "variable") }),
+          }),
+        })
+      ),
+
       s(
         { trig = "fn", dscr = "Insert function block" },
         c(1, {
@@ -136,6 +147,7 @@ return {
 
     ls.add_snippets(nil, {
       javascript = javascript,
+      javascriptreact = javascript,
       typescript = javascript,
       typescriptreact = javascript,
     })
