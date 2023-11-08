@@ -4,6 +4,7 @@ return {
     priority = 1000,
     opts = function()
       local util = require("tokyonight.util")
+
       return {
         style = "night",
         on_highlights = function(hl, c)
@@ -22,59 +23,70 @@ return {
   },
   {
     "Mofiqul/vscode.nvim",
-    -- priority = 1000,
-    config = function()
+    priority = 1000,
+    opts = function()
       local c = require("vscode.colors").get_colors()
-      require("vscode").setup({
+
+      return {
         italic_comments = true,
         disable_nvimtree_bg = true,
-        color_overrides = {
-          -- vscBack = '#000000',
-        },
         group_overrides = {
-          ["@variable"] = { fg = c.vscBlue, bg = c.none },
-          ["@variable.builtin"] = { fg = c.vscBlue, bg = c.none },
+          ["@variable"] = { fg = c.vscBlue, bg = c.vscNone },
+          ["@variable.builtin"] = { fg = c.vscBlue, bg = c.vscNone },
 
-          ["@lsp.typemod.variable.defaultLibrary"] = {
-            link = "@type",
-          },
+          ["@lsp.typemod.variable.defaultLibrary"] = { link = "@type" },
           ["@lsp.typemod.type.defaultLibrary"] = { link = "@type" },
-          ["@lsp.typemod.variable"] = { link = "@variable" },
+          ["@lsp.typemod.variable"] = { link = "@constant" },
           -- ['@lsp.typemod.variable.declaration'] = { link = '@variable' },
+
+          ["@type.builtin"] = { link = "@type" },
+
+          SpecialChar = { link = "Special" },
+          ["@string.escape.regex"] = { fg = c.vscLightRed, bg = c.vscNone },
+          ["@character.special"] = { fg = c.vscBlue, bg = c.vscNone },
 
           -- spell
           SpellBad = {
-            fg = c.none,
-            bg = c.none,
+            fg = c.vscNone,
+            bg = c.vscNone,
             undercurl = true,
             sp = c.vscRed,
           },
           SpellCap = {
-            fg = c.none,
-            bg = c.none,
+            fg = c.vscNone,
+            bg = c.vscNone,
             undercurl = true,
             sp = c.vscRed,
           },
           SpellRare = {
-            fg = c.none,
-            bg = c.none,
+            fg = c.vscNone,
+            bg = c.vscNone,
             undercurl = true,
             sp = c.vscRed,
           },
           SpellLocal = {
-            fg = c.none,
-            bg = c.none,
+            fg = c.vscNone,
+            bg = c.vscNone,
             undercurl = true,
             sp = c.vscRed,
           },
 
-          ModeMsg = { fg = c.vsFront, bg = c.none },
-          WarningMsg = { fg = c.vscYellowOrange, bg = c.none },
+          ModeMsg = { fg = c.vscFront, bg = c.vscNone },
+          WarningMsg = { fg = c.vscYellowOrange, bg = c.vscNone },
 
-          -- GitBranch = { fg = c.blue, bg = c.bg_statusline }
+          GitBranch = { fg = c.vscGreen, bg = c.vscNone },
+
+          NonText = {
+            fg = c.vscLineNumber,
+            bg = c.vscNone,
+          },
         },
-      })
-      -- require('vscode').load()
+      }
+    end,
+    config = function(_, opts)
+      local vscode = require("vscode")
+      vscode.setup(opts)
+      -- vscode.load()
     end,
   },
   {
