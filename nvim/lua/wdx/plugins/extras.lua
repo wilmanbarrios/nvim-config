@@ -96,8 +96,14 @@ return {
       {
         mode = { "n", "v" },
         "<leader>ctc",
-        "<cmd>lua require('textcase').current_word('to_camel_case')<CR>",
+        "<cmd>lua require('textcase').operator('to_camel_case')<CR>",
         desc = "[c]ase [t]o [c]amelCase",
+      },
+      {
+        mode = { "n", "v" },
+        "<leader>ctd",
+        "<cmd>lua require('textcase').operator('to_dash_case')<CR>",
+        desc = "[c]ase [t]o [d]ash_case",
       },
     },
   },
