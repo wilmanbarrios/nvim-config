@@ -19,11 +19,15 @@ local on_attach = function(client, bufnr)
 
   --- LSP Saga
   keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", bufopts)
+  -- Goto definition in a vsplit window
+  keymap("n", "gO", "<cmd>vs | Lspsaga goto_definition<CR>", bufopts)
   keymap("n", "<Leader>D", "<cmd>Lspsaga goto_type_definition<CR>", bufopts)
   keymap("n", "dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
   keymap("n", "dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
   keymap("n", "dl", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
   keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
+
+  vim.o.tagfunc = "v:lua.vim.lsp.tagfunc"
 end
 
 local servers = {
