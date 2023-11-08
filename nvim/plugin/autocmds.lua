@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- })
 
 --- Workaround to fix folds when using telescope to open a file
+---@see https://github.com/nvim-telescope/telescope.nvim/issues/559
 local disabled_fts = { "gitcommit", "fugitive" }
 vim.api.nvim_create_autocmd("BufRead", {
   callback = function()
