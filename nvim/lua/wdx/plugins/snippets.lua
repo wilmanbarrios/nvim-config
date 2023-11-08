@@ -4,11 +4,13 @@ return {
     local ls = require("luasnip")
     local fmt = require("luasnip.extras.fmt").fmt
     local fmta = require("luasnip.extras.fmt").fmta
+    local rep = require("luasnip.extras").rep
     local s = ls.s
     local t = ls.text_node
     local i = ls.insert_node
     local c = ls.choice_node
     local f = ls.function_node
+    local sn = ls.snippet_node
     local isn = ls.indent_snippet_node
     local r = ls.restore_node
 
@@ -56,10 +58,31 @@ return {
         "log",
         fmta([[console.log(<>)]], {
           c(1, {
+            fmta([["<>"]], { r(1, "variable") }),
+            fmta([[{<>}]], { r(1, "variable") }),
             fmta([["\n\n\n", {<>}]], { r(1, "variable") }),
+            fmta([[JSON.stringify(<>, null, 2)]], { r(1, "variable") }),
             fmta([[JSON.stringify({<>}, null, 2)]], { r(1, "variable") }),
           }),
         })
+      ),
+
+      s(
+        "prof",
+        fmt(
+          [[
+           console.time('{}')
+           {}
+           console.timeEnd('{}')
+          ]],
+          {
+            i(1),
+            sn(2, {
+              f(get_visual_selection),
+            }),
+            rep(1),
+          }
+        )
       ),
 
       s(
@@ -169,9 +192,16 @@ return {
     end, { silent = true, noremap = true })
 
     -- toggle choices
-    vim.keymap.set({ "i", "s" }, "<C-j>", function()
+    vim.keymap.set({ "i", "s" }, "<C-e>", function()
       if ls.choice_active() then
         ls.change_choice(1)
+      end
+    end, { silent = true })
+
+    -- expand current snippet
+    vim.keymap.set("i", "<C-j>", function()
+      if ls.expandable() then
+        ls.expand()
       end
     end, { silent = true })
   end,
