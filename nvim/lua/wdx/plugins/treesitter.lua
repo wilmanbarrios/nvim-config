@@ -70,6 +70,22 @@ return {
         max_lines = 10, -- How many lines the window should span. Values <= 0 mean no limit.
       },
       textobjects = {
+        select = {
+          enable = true,
+          -- Automatically jump forward to textobj, similar to targets.vim
+          lookahead = true,
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ab"] = "@block.outer",
+            ["ib"] = "@block.inner",
+          },
+          selection_modes = {
+            ["@function.outer"] = "V",
+          },
+        },
         swap = {
           enable = true,
           swap_next = {
