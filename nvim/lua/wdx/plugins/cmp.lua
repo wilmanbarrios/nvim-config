@@ -1,3 +1,5 @@
+local DEBUG = false
+
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -44,16 +46,21 @@ return {
               maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
               ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             })
-            local output = formatter(entry, vim_item)
-            output.menu = string.format(
-              "[offset->%s,exact->%s,score->%s,kind->%s,order->%s]",
-              entry:get_offset(),
-              entry.exact,
-              entry.score,
-              entry:get_kind(),
-              entry.id
-            )
-            return output
+
+            if DEBUG then
+              local output = formatter(entry, vim_item)
+              output.menu = string.format(
+                "[offset->%s,exact->%s,score->%s,kind->%s,order->%s]",
+                entry:get_offset(),
+                entry.exact,
+                entry.score,
+                entry:get_kind(),
+                entry.id
+              )
+              return output
+            end
+
+            return formatter(entry, vim_item)
           end,
         },
         sorting = {
