@@ -6,5 +6,10 @@ map_tele("<Leader>fd", "find_in_dotfiles")
 map_tele("<Leader>ht", "help_tags")
 map_tele("<Leader>sw", "grep_prompt")
 map_tele("<Leader>sq", "grep_string")
-map_tele("<Leader>gr", "lsp_document_symbols")
+
+vim.keymap.set(
+  "n",
+  "<Leader>gr",
+  require("telescope.builtin").lsp_document_symbols
+)
 vim.keymap.set("n", "<Leader>tt", require("telescope.builtin").resume)
