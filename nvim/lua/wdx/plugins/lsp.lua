@@ -46,10 +46,16 @@ return {
     "mfussenegger/nvim-lint",
     config = function()
       local lint = require("lint")
+      local javascript_opts = {
+        -- "biomejs",
+        "eslint_d",
+      }
+
       lint.linters_by_ft = {
-        javascript = { "eslint_d" },
-        typescript = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
+        javascript = javascript_opts,
+        javascriptreact = javascript_opts,
+        typescript = javascript_opts,
+        typescriptreact = javascript_opts,
       }
 
       vim.api.nvim_create_autocmd(
