@@ -76,7 +76,13 @@ return {
       local api = require("nvim-tree.api")
 
       return {
-        { "<C-b>", api.tree.toggle, desc = "Open/close nvim-tree" },
+        {
+          "<C-b>",
+          function()
+            api.tree.toggle()
+          end,
+          desc = "Open/close nvim-tree",
+        },
         {
           "<Leader>l",
           function()
