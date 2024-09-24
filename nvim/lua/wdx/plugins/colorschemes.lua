@@ -23,7 +23,7 @@ return {
   },
   {
     "Mofiqul/vscode.nvim",
-    priority = 1000,
+    enable = false,
     opts = function()
       local c = require("vscode.colors").get_colors()
 
@@ -40,9 +40,10 @@ return {
           -- ['@lsp.typemod.variable.declaration'] = { link = '@variable' },
 
           ["@type.builtin"] = { link = "@type" },
+          ["@tag.tsx"] = { link = "@type" },
 
           SpecialChar = { link = "Special" },
-          ["@string.escape.regex"] = { fg = c.vscLightRed, bg = c.vscNone },
+          ["@string.regexp"] = { fg = c.vscLightRed, bg = c.vscNone },
           ["@character.special"] = { fg = c.vscBlue, bg = c.vscNone },
 
           -- spell
@@ -84,32 +85,34 @@ return {
       }
     end,
     config = function(_, opts)
-      local vscode = require("vscode")
-      vscode.setup(opts)
+      -- local vscode = require("vscode")
+      -- vscode.setup(opts)
       -- vscode.load()
     end,
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    enable = false,
     -- lazy = true,
     config = function()
-      require("catppuccin").setup({})
+      -- require("catppuccin").setup({})
       -- vim.cmd.colorscheme('catppuccin-mocha')
     end,
   },
   {
     "projekt0n/github-nvim-theme",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    enable = false,
+    -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      require("github-theme").setup({
-        styles = {
-          comments = "italic",
-          keywords = "bold",
-          types = "italic,bold",
-        },
-      })
+      -- require("github-theme").setup({
+      --   styles = {
+      --     comments = "italic",
+      --     keywords = "bold",
+      --     types = "italic,bold",
+      --   },
+      -- })
 
       -- vim.cmd("colorscheme github_dark_high_contrast")
     end,

@@ -43,15 +43,17 @@ function M.find_in_vendors()
 end
 
 function M.buffers()
-  require("telescope.builtin").buffers(themes.get_dropdown({
+  require("telescope.builtin").buffers({
     ignore_current_buffer = true,
     previewer = false,
     sort_mru = true,
+    sorting_strategy = "ascending",
     layout_config = {
+      prompt_position = "top",
       width = 100,
       height = 20,
     },
-  }))
+  })
 end
 
 function M.lsp_code_actions()

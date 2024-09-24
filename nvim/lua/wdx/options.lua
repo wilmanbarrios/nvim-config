@@ -6,7 +6,6 @@ opt.termguicolors = true
 opt.spell = true
 opt.spelloptions = { "camel" } --- if a word is CamelCased, assume "Cased" is a separate word
 
-opt.autoindent = true
 opt.smartindent = true
 opt.expandtab = true
 opt.tabstop = 2

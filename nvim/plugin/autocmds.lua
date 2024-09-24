@@ -6,11 +6,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- TODO: do I really need this autocmd?
--- vim.api.nvim_create_autocmd("VimResized", {
---   pattern = "*",
---   command = "wincmd =",
--- })
+-- TODO: describe
+vim.api.nvim_create_autocmd("VimResized", {
+  pattern = "*",
+  command = "wincmd =",
+})
 
 --- Workaround to fix folds when using telescope to open a file
 ---@see https://github.com/nvim-telescope/telescope.nvim/issues/559

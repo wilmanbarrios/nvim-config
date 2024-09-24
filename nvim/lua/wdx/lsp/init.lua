@@ -5,17 +5,13 @@ require("wdx.lsp.diagnostic")
 local keymap = vim.keymap.set
 
 local on_attach = function(client, bufnr)
-  local bufopts = { buffer = bufnr }
+  local bufopts = { buffer = bufnr, noremap = true }
 
   -- Builtin LSP
   keymap("n", "gD", vim.lsp.buf.implementation, bufopts)
   keymap("i", "<c-k>", vim.lsp.buf.signature_help, bufopts)
   keymap("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   keymap("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
-  -- keymap("n", "K", vim.lsp.buf.hover, bufopts)
-  -- keymap("n", "<Leader>ff", function()
-  --   vim.lsp.buf.format({ timeout_ms = 20000 })
-  -- end, bufopts)
 
   --- LSP Saga
   keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", bufopts)
@@ -26,12 +22,14 @@ local on_attach = function(client, bufnr)
   keymap("n", "dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
   keymap("n", "dl", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
   keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
+  keymap("n", "grr", "<cmd>Lspsaga rename mode=i<CR>", bufopts)
 
   vim.o.tagfunc = "v:lua.vim.lsp.tagfunc"
 end
 
 local servers = {
-  tailwindcss = {},
+  -- tailwindcss = {},
+  -- graphql = {},
   lua_ls = {
     on_init = function(client)
       local path = client.workspace_folders[1].name
@@ -69,14 +67,14 @@ local servers = {
       return true
     end,
   },
-  intelephense = {
-    autostart = false,
-    init_options = {
-      globalStoragePath = os.getenv("XDG_DATA_HOME") .. "/intelephense",
-      licenceKey = os.getenv("INTELEPHENSE_LICENCE_KEY"),
-    },
-  },
-  -- eslint = {},
+  -- intelephense = {
+  --   autostart = false,
+  --   init_options = {
+  --     globalStoragePath = os.getenv("XDG_DATA_HOME") .. "/intelephense",
+  --     licenceKey = os.getenv("INTELEPHENSE_LICENCE_KEY"),
+  --   },
+  -- },
+  eslint = {},
 }
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -89,6 +87,15 @@ for server, opts in pairs(servers) do
 end
 
 require("typescript-tools").setup({
+  settings = {
+    tsserver_plugins = {
+      -- for TypeScript v4.9+
+      "@styled/typescript-styled-plugin",
+
+      -- -- for older TypeScript versions
+      -- "typescript-styled-plugin",
+    },
+  },
   on_attach = function(...)
     local ts_tools = require("typescript-tools.api")
 

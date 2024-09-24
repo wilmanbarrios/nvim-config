@@ -15,10 +15,15 @@ return {
     "mattn/emmet-vim",
     event = { "BufReadPre", "BufNewFile" },
   }, -- Emmet
+
+  -- Commenting
   {
-    "tpope/vim-commentary",
-    event = { "BufReadPre", "BufNewFile" },
-  }, -- Commenting
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
+  },
+
   {
     "tpope/vim-surround",
     event = { "BufReadPre", "BufNewFile" },
@@ -69,16 +74,6 @@ return {
     config = true,
     event = { "BufReadPre", "BufNewFile" },
     tag = "legacy",
-    -- -- I have a set of customizations to properly ignore code_actions so I don't
-    -- -- want to override my changes for now.
-    -- pin = true,
-    -- opts = {
-    --   sources = {
-    --     ['null-ls'] = {
-    --       ignore = { 'code_action', 'diagnostics' }
-    --     }
-    --   }
-    -- },
   },
 
   -- highlight hex color
@@ -105,13 +100,18 @@ return {
         "<cmd>lua require('textcase').operator('to_dash_case')<CR>",
         desc = "[c]ase [t]o [d]ash_case",
       },
+      {
+        mode = { "n", "x" },
+        "<leader>ctt",
+        "<cmd>lua require('textcase').operator('to_title_case')<CR>",
+        desc = "[c]ase [t]o [t]itle",
+      },
+      {
+        mode = { "n", "x" },
+        "<leader>cts",
+        "<cmd>lua require('textcase').operator('to_snake_case')<CR>",
+        desc = "[c]ase [t]o [s]nake",
+      },
     },
-  },
-
-  {
-    "ray-x/lsp_signature.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    main = "lsp_signature",
-    config = true,
   },
 }

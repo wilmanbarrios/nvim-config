@@ -6,68 +6,29 @@ return {
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
-      "JoosepAlviste/nvim-ts-context-commentstring", -- Change commentstring on the fly
       "windwp/nvim-ts-autotag", -- auto close and rename html tags using treesitter
     },
     opts = {
-      ensure_installed = {
-        "comment",
-        "javascript",
-        "bash",
-        "css",
-        "diff",
-        "dockerfile",
-        "gitattributes",
-        "gitcommit",
-        "git_config",
-        "git_rebase",
-        "gitignore",
-        "graphql",
-        "html",
-        "jsdoc",
-        "json",
-        "jsonc",
-        "lua",
-        "luadoc",
-        "luap",
-        "make",
-        "markdown",
-        "markdown_inline",
-        "php",
-        "phpdoc",
-        "prisma",
-        "query",
-        "regex",
-        "sql",
-        "scss",
-        "toml",
-        "tsx",
-        "typescript",
-        "yaml",
-      },
+      ensure_installed = "all",
       highlight = {
         enable = true,
       },
       indent = {
         enable = true,
       },
-      context_commentstring = {
-        enable = true,
-      },
       refactor = {
         highlight_definitions = {
           enable = true,
         },
-        smart_rename = {
-          enable = true,
-        },
+        -- smart_rename = {
+        --   enable = false,
+        -- },
       },
       autotag = {
         enable = true,
       },
       context = {
         enable = true,
-        max_lines = 10, -- How many lines the window should span. Values <= 0 mean no limit.
       },
       textobjects = {
         select = {
@@ -103,6 +64,18 @@ return {
       vim.o.foldexpr = "nvim_treesitter#foldexpr()"
       vim.o.foldlevelstart = 99
       vim.o.foldenable = false
+    end,
+  },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    opts = {
+      context_commentstring = {
+        enable = true,
+      },
+    },
+    main = "ts_context_commentstring",
+    init = function()
+      vim.g.skip_ts_context_commentstring_module = true
     end,
   },
 }

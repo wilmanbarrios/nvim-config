@@ -5,7 +5,7 @@ return {
     {
       mode = "x",
       "<Leader>rq",
-      ":DB<CR> | :up<CR>",
+      ":DB<CR>",
       desc = "Visual select any DB queries and run them on the fly",
     },
   },

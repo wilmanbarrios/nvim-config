@@ -33,6 +33,9 @@ return {
       symbol_in_winbar = {
         enable = false,
       },
+      rename = {
+        in_select = false,
+      },
     },
   },
 
@@ -42,30 +45,30 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   },
 
-  {
-    "mfussenegger/nvim-lint",
-    config = function()
-      local lint = require("lint")
-      local javascript_opts = {
-        -- "biomejs",
-        "eslint_d",
-      }
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   config = function()
+  --     local lint = require("lint")
+  --     local javascript_opts = {
+  --       "biomejs",
+  --       -- "eslint_d",
+  --     }
 
-      lint.linters_by_ft = {
-        javascript = javascript_opts,
-        javascriptreact = javascript_opts,
-        typescript = javascript_opts,
-        typescriptreact = javascript_opts,
-      }
+  --     lint.linters_by_ft = {
+  --       javascript = javascript_opts,
+  --       javascriptreact = javascript_opts,
+  --       typescript = javascript_opts,
+  --       typescriptreact = javascript_opts,
+  --     }
 
-      vim.api.nvim_create_autocmd(
-        { "BufEnter", "BufWritePost", "InsertLeave" },
-        {
-          callback = function()
-            lint.try_lint()
-          end,
-        }
-      )
-    end,
-  },
+  --     vim.api.nvim_create_autocmd(
+  --       { "BufEnter", "BufWritePost", "InsertLeave" },
+  --       {
+  --         callback = function()
+  --           lint.try_lint()
+  --         end,
+  --       }
+  --     )
+  --   end,
+  -- },
 }
