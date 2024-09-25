@@ -1,9 +1,20 @@
 local themes = require("telescope.themes")
+local utils = require("telescope.utils")
+local git_command = utils.__git_command
 
 local M = {}
 
 function M.find_in_dotfiles()
   require("telescope.builtin").git_files({
+    git_command = git_command({
+      "-c",
+      "core.quotepath=false",
+      "ls-files",
+      "--exclude-standard",
+      "--cached",
+      "--recurse-submodules",
+      ":!:dotbot",
+    }),
     cwd = "$DOTFILES",
     prompt_title = "Dotfiles",
   })
