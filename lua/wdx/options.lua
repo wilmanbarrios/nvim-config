@@ -24,7 +24,7 @@ opt.hidden = true
 
 opt.inccommand = "split"
 
-opt.colorcolumn = "+1"
+opt.colorcolumn = "80,120"
 
 opt.completeopt = { "menuone", "noinsert", "noselect" }
 
