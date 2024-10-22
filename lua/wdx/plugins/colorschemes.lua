@@ -18,103 +18,16 @@ return {
     end,
     config = function(_, opts)
       require("tokyonight").setup(opts)
-      vim.cmd.colorscheme("tokyonight")
+      -- vim.cmd.colorscheme("tokyonight")
     end,
   },
   {
-    "Mofiqul/vscode.nvim",
-    enable = false,
-    opts = function()
-      local c = require("vscode.colors").get_colors()
-
-      return {
-        italic_comments = true,
-        disable_nvimtree_bg = true,
-        group_overrides = {
-          ["@variable"] = { fg = c.vscBlue, bg = c.vscNone },
-          ["@variable.builtin"] = { fg = c.vscBlue, bg = c.vscNone },
-
-          ["@lsp.typemod.variable.defaultLibrary"] = { link = "@type" },
-          ["@lsp.typemod.type.defaultLibrary"] = { link = "@type" },
-          ["@lsp.typemod.variable"] = { link = "@constant" },
-          -- ['@lsp.typemod.variable.declaration'] = { link = '@variable' },
-
-          ["@type.builtin"] = { link = "@type" },
-          ["@tag.tsx"] = { link = "@type" },
-
-          SpecialChar = { link = "Special" },
-          ["@string.regexp"] = { fg = c.vscLightRed, bg = c.vscNone },
-          ["@character.special"] = { fg = c.vscBlue, bg = c.vscNone },
-
-          -- spell
-          SpellBad = {
-            fg = c.vscNone,
-            bg = c.vscNone,
-            undercurl = true,
-            sp = c.vscRed,
-          },
-          SpellCap = {
-            fg = c.vscNone,
-            bg = c.vscNone,
-            undercurl = true,
-            sp = c.vscRed,
-          },
-          SpellRare = {
-            fg = c.vscNone,
-            bg = c.vscNone,
-            undercurl = true,
-            sp = c.vscRed,
-          },
-          SpellLocal = {
-            fg = c.vscNone,
-            bg = c.vscNone,
-            undercurl = true,
-            sp = c.vscRed,
-          },
-
-          ModeMsg = { fg = c.vscFront, bg = c.vscNone },
-          WarningMsg = { fg = c.vscYellowOrange, bg = c.vscNone },
-
-          GitBranch = { fg = c.vscGreen, bg = c.vscNone },
-
-          NonText = {
-            fg = c.vscLineNumber,
-            bg = c.vscNone,
-          },
-        },
-      }
-    end,
+    "rose-pine/neovim",
+    priority = 1000,
+    name = "rose-pine",
     config = function(_, opts)
-      -- local vscode = require("vscode")
-      -- vscode.setup(opts)
-      -- vscode.load()
-    end,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    enable = false,
-    -- lazy = true,
-    config = function()
-      -- require("catppuccin").setup({})
-      -- vim.cmd.colorscheme('catppuccin-mocha')
-    end,
-  },
-  {
-    "projekt0n/github-nvim-theme",
-    enable = false,
-    -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      -- require("github-theme").setup({
-      --   styles = {
-      --     comments = "italic",
-      --     keywords = "bold",
-      --     types = "italic,bold",
-      --   },
-      -- })
-
-      -- vim.cmd("colorscheme github_dark_high_contrast")
+      require("rose-pine").setup(opts)
+      vim.cmd.colorscheme("rose-pine")
     end,
   },
 }
