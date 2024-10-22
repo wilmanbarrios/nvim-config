@@ -25,6 +25,11 @@ return {
     "rose-pine/neovim",
     priority = 1000,
     name = "rose-pine",
+    opts = {
+      styles = {
+        italic = false,
+      },
+    },
     config = function(_, opts)
       require("rose-pine").setup(opts)
       vim.cmd.colorscheme("rose-pine")
