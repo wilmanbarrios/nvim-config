@@ -1,4 +1,4 @@
-local javascript_formatter = { { "biome", "prettierd", "prettier" } }
+local js = { "biome", "prettierd", "prettier", stop_after_first = true }
 
 return {
   {
@@ -7,7 +7,6 @@ return {
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     opts = {
-      log_level = vim.log.levels.DEBUG,
       format_on_save = function(bufnr)
         -- Disable with a global or buffer-local variable
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -17,14 +16,14 @@ return {
       end,
       formatters_by_ft = {
         lua = { "stylua" },
-        javascript = javascript_formatter,
-        typescript = javascript_formatter,
-        typescriptreact = javascript_formatter,
+        javascript = js,
+        typescript = js,
+        typescriptreact = js,
         graphql = { "prettierd" },
       },
     },
     init = function()
-      -- TODO: just testing this thing because the docs says: "Expression which
+      -- NOTE: just testing this thing because the docs says: "Expression which
       -- is evaluated to format a range of lines for the |gq| operator or
       -- automatic formatting"
 
@@ -56,6 +55,7 @@ return {
         "<leader>ff",
         function()
           require("conform").format({ async = true, lsp_fallback = true })
+          print("Formatted!")
         end,
         desc = "Format buffer",
       },
