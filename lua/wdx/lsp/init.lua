@@ -27,6 +27,10 @@ local on_attach = function(client, bufnr)
   vim.o.tagfunc = "v:lua.vim.lsp.tagfunc"
 end
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = on_attach,
+})
+
 local servers = {
   -- tailwindcss = {},
   -- graphql = {},
@@ -41,20 +45,13 @@ local servers = {
           vim.tbl_deep_extend("force", client.config.settings, {
             Lua = {
               runtime = {
-                -- Tell the language server which version of Lua you're using
-                -- (most likely LuaJIT in the case of Neovim)
                 version = "LuaJIT",
               },
-              -- Make the server aware of Neovim runtime files
               workspace = {
                 checkThirdParty = false,
                 library = {
                   vim.env.VIMRUNTIME,
-                  -- "${3rd}/luv/library"
-                  -- "${3rd}/busted/library",
                 },
-                -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-                -- library = vim.api.nvim_get_runtime_file("", true)
               },
             },
           })
@@ -81,7 +78,6 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 for server, opts in pairs(servers) do
   lspconfig[server].setup(vim.tbl_extend("force", {
-    on_attach = on_attach,
     capabilities = capabilities,
   }, opts))
 end
@@ -89,11 +85,7 @@ end
 require("typescript-tools").setup({
   settings = {
     tsserver_plugins = {
-      -- for TypeScript v4.9+
       "@styled/typescript-styled-plugin",
-
-      -- -- for older TypeScript versions
-      -- "typescript-styled-plugin",
     },
   },
   on_attach = function(...)
