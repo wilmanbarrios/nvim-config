@@ -1,4 +1,4 @@
-local js = { "biome", "prettierd", "prettier", stop_after_first = true }
+local js = { "prettierd", "biome", "prettier", stop_after_first = true }
 
 return {
   {
@@ -12,6 +12,12 @@ return {
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end
+
+        -- Disable formatting for Python files
+        if vim.bo[bufnr].filetype == "python" then
+          return
+        end
+
         return { timeout_ms = 500, lsp_fallback = true }
       end,
       formatters_by_ft = {
@@ -20,6 +26,12 @@ return {
         typescript = js,
         typescriptreact = js,
         graphql = { "prettierd" },
+        python = {
+          -- To run the Ruff formatter.
+          "ruff_format",
+          -- To organize the imports.
+          "ruff_organize_imports",
+        },
       },
     },
     init = function()

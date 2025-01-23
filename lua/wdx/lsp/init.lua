@@ -34,6 +34,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local servers = {
   -- tailwindcss = {},
   -- graphql = {},
+
+  --- Python
+  --- pyright: static type checker
+  pyright = {
+    settings = {
+      pyright = {
+        -- Using Ruff's import organizer
+        disableOrganizeImports = true,
+      },
+      python = {
+        analysis = {
+          -- Ignore all files for analysis to exclusively use Ruff for linting
+          ignore = { "*" },
+        },
+      },
+    },
+  },
+  --- ruff: an extremely fast Python linter and code formatter
+  ruff = {},
+
   lua_ls = {
     on_init = function(client)
       local path = client.workspace_folders[1].name
