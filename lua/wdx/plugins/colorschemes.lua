@@ -18,7 +18,7 @@ return {
     end,
     config = function(_, opts)
       require("tokyonight").setup(opts)
-      -- vim.cmd.colorscheme("tokyonight")
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
   {
@@ -32,7 +32,7 @@ return {
     },
     config = function(_, opts)
       require("rose-pine").setup(opts)
-      vim.cmd.colorscheme("rose-pine")
+      -- vim.cmd.colorscheme("rose-pine")
     end,
   },
 }
