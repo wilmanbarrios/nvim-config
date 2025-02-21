@@ -43,11 +43,16 @@ end
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
   callback = function(ev)
+    -- TODO(wilman): I should include a ENV variable into each repo to get the
+    -- Jira project code, to avoid doing this on each project
     local is_coop_repo = string.find(ev.file, "COOP")
+    local is_orbit_repo = string.find(ev.file, "Orbit")
+    local is_target = is_coop_repo or is_orbit_repo
+
     local ignore_branchs = { "develop", "master", "main" }
     local is_ignored = vim.tbl_contains(ignore_branchs, get_current_branch())
 
-    if is_coop_repo and not is_ignored then
+    if is_target and not is_ignored then
       vim.api.nvim_feedkeys("4jf/wveeeyggPa: ", "n", true)
     end
   end,

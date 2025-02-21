@@ -1,4 +1,4 @@
-local js = { "prettierd", "biome", "prettier", stop_after_first = true }
+local js = { "biome", "prettierd", "prettier", stop_after_first = true }
 
 return {
   {
