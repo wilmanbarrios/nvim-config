@@ -5,6 +5,8 @@ local register_listeners = function()
   local Event = api.events.Event
 
   local update_symlinks = function()
+    -- TODO(wilman): check if the exist project has a dodbot directory and not
+    -- just the project name
     local has_dodbot = vim.fn.getcwd():match("nvim%-config")
 
     if not has_dodbot then
@@ -70,7 +72,7 @@ return {
         end,
       }, opts))
 
-      register_listeners()
+      -- register_listeners()
     end,
     keys = function()
       local api = require("nvim-tree.api")
