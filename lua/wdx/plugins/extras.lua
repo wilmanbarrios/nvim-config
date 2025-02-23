@@ -1,12 +1,16 @@
 return {
-  { "christoomey/vim-tmux-navigator", event = "VeryLazy" }, -- Improved window navigation between tmux panes and vim
+  -- Improved window navigation between tmux panes and vim
+  { "christoomey/vim-tmux-navigator", event = "VeryLazy" },
+
+  -- Improved vim startuptime profiler
   {
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
+    event = "VeryLazy",
     config = function()
       vim.g.startuptime_tries = 10
     end,
-  }, -- Improved vim startuptime profiler
+  },
   {
     "lewis6991/spaceless.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -14,7 +18,7 @@ return {
   {
     "mattn/emmet-vim",
     event = { "BufReadPre", "BufNewFile" },
-  }, -- Emmet
+  },
 
   -- Commenting
   {
@@ -24,27 +28,34 @@ return {
     enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
 
+  -- Surround things with things
   {
     "tpope/vim-surround",
     event = { "BufReadPre", "BufNewFile" },
-  }, -- sorround things with things
+  },
+
+  -- Extra set of mapping
   {
     "tpope/vim-unimpaired",
     event = { "BufReadPre", "BufNewFile" },
-  }, -- extra set of mapping
+  },
+  -- Expand builtin text-objects
   {
     "wellle/targets.vim",
     event = { "BufReadPre", "BufNewFile" },
-  }, -- Expand builtin text-objects
+  },
   {
     "windwp/nvim-autopairs",
     config = true,
     event = { "BufReadPre", "BufNewFile" },
   },
+
+  -- Align stuffs
   {
     "junegunn/vim-easy-align",
     cmd = "EasyAlign",
-  }, -- align stuffs
+  },
+
   {
     "nvim-pack/nvim-spectre",
     main = "spectre",
@@ -68,6 +79,7 @@ return {
       },
     },
   },
+
   {
     "j-hui/fidget.nvim",
     main = "fidget",

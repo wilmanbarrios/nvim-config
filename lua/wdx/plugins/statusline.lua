@@ -21,7 +21,7 @@ return {
       lualine_a = {},
       lualine_b = {},
       lualine_c = {
-        "[[👉]]",
+        "[[⭐️]]",
         {
           "filetype",
           icon_only = true,

@@ -6,7 +6,6 @@ return {
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
-      "windwp/nvim-ts-autotag", -- auto close and rename html tags using treesitter
     },
     opts = {
       ensure_installed = "all",
@@ -20,12 +19,6 @@ return {
         highlight_definitions = {
           enable = true,
         },
-        -- smart_rename = {
-        --   enable = false,
-        -- },
-      },
-      autotag = {
-        enable = true,
       },
       context = {
         enable = true,
@@ -60,22 +53,26 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-      vim.o.foldmethod = "expr"
-      vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = false
+      vim.wo.foldmethod = "expr"
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.wo.foldlevelstart = 99
+      vim.wo.foldenable = false
     end,
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     opts = {
       context_commentstring = {
-        enable = true,
+        enable = false,
       },
     },
     main = "ts_context_commentstring",
     init = function()
       vim.g.skip_ts_context_commentstring_module = true
     end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    event = { "BufReadPre", "BufNewFile" },
   },
 }
