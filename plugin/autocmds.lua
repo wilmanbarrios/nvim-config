@@ -38,22 +38,47 @@ local function get_current_branch()
   end
 end
 
---- If we are creating a commit on a COOP repo and current branch is not
---- `develop` auto type for me the COOPFE issue code
+--- If we are creating a commit on a repo that has `JIRA_BOARD_CODE` defined
+--- within .env file autocomplete the COOPFE issue code.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
   callback = function(ev)
-    -- TODO(wilman): I should include a ENV variable into each repo to get the
-    -- Jira project code, to avoid doing this on each project
-    local is_coop_repo = string.find(ev.file, "COOP")
-    local is_orbit_repo = string.find(ev.file, "Orbit")
-    local is_target = is_coop_repo or is_orbit_repo
+    local current_branch = get_current_branch()
 
-    local ignore_branchs = { "develop", "master", "main" }
-    local is_ignored = vim.tbl_contains(ignore_branchs, get_current_branch())
-
-    if is_target and not is_ignored then
-      vim.api.nvim_feedkeys("4jf/wveeeyggPa: ", "n", true)
+    local ignore =
+      vim.tbl_contains({ "develop", "master", "main" }, current_branch)
+    if ignore then
+      return
     end
+
+    local ok, dotenv = pcall(require, "lua-dotenv")
+    if not ok then
+      vim.notify(
+        "Failed to load lua-dotenv. Make sure it's installed.",
+        vim.log.levels.WARN
+      )
+      return
+    end
+
+    local cwd = vim.fn.getcwd()
+    local env_path = cwd .. "/.env"
+    dotenv.load_dotenv(env_path)
+
+    local jira_board_code = dotenv.get("JIRA_BOARD_CODE")
+    if not jira_board_code then
+      return
+    end
+
+    local jira_issue_ticket =
+      string.match(current_branch, jira_board_code .. "%-%d+")
+
+    if not jira_issue_ticket then
+      return
+    end
+
+    -- Insert the text at the start of the first line
+    local text = jira_issue_ticket .. ": "
+    vim.api.nvim_buf_set_text(ev.buf, 0, 0, 0, 0, { text })
+    vim.api.nvim_feedkeys("A", "n", true)
   end,
 })

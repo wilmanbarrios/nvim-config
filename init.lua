@@ -32,6 +32,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
+package.path = package.path
+  .. ";"
+  .. vim.fn.expand("~/.luarocks/share/lua/5.4/?.lua")
 
 require("lazy").setup("wdx.plugins", {
   install = {
