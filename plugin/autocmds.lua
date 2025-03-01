@@ -38,46 +38,16 @@ local function get_current_branch()
   end
 end
 
---- If we are creating a commit on a repo that has `JIRA_BOARD_CODE` defined
---- within .env file autocomplete the COOPFE issue code.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
   callback = function(ev)
-    local current_branch = get_current_branch()
-
-    local ignore =
-      vim.tbl_contains({ "develop", "master", "main" }, current_branch)
-    if ignore then
+    local branch = get_current_branch()
+    local issue_code = string.match(branch, "([A-Z]+-%d+)")
+    if not issue_code then
       return
     end
 
-    local ok, dotenv = pcall(require, "lua-dotenv")
-    if not ok then
-      vim.notify(
-        "Failed to load lua-dotenv. Make sure it's installed.",
-        vim.log.levels.WARN
-      )
-      return
-    end
-
-    local cwd = vim.fn.getcwd()
-    local env_path = cwd .. "/.env"
-    dotenv.load_dotenv(env_path)
-
-    local jira_board_code = dotenv.get("JIRA_BOARD_CODE")
-    if not jira_board_code then
-      return
-    end
-
-    local jira_issue_ticket =
-      string.match(current_branch, jira_board_code .. "%-%d+")
-
-    if not jira_issue_ticket then
-      return
-    end
-
-    -- Insert the text at the start of the first line
-    local text = jira_issue_ticket .. ": "
+    local text = issue_code .. ": "
     vim.api.nvim_buf_set_text(ev.buf, 0, 0, 0, 0, { text })
     vim.api.nvim_feedkeys("A", "n", true)
   end,
