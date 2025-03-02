@@ -67,7 +67,9 @@ return {
         "<leader>ff",
         function()
           require("conform").format({ async = true, lsp_fallback = true })
-          print("Formatted!")
+
+          local fidget = require("fidget")
+          fidget.notify("Formatted", vim.log.levels.INFO)
         end,
         desc = "Format buffer",
       },

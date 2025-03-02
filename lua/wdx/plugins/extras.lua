@@ -85,7 +85,6 @@ return {
     main = "fidget",
     config = true,
     event = { "BufReadPre", "BufNewFile" },
-    tag = "legacy",
   },
 
   -- highlight hex color

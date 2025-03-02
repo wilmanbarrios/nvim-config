@@ -76,10 +76,11 @@ function M.lsp_code_actions()
 end
 
 function M.grep_prompt()
-  local text = vim.fn.input("Grep String > ", vim.fn.expand("<cword>"))
+  local text = vim.fn.input("Grep String 🔍 ", vim.fn.expand("<cword>"))
 
   if text == "" then
-    print("aborted...")
+    local fidget = require("fidget")
+    fidget.notify("Aborted", vim.log.levels.INFO)
     return
   end
 
