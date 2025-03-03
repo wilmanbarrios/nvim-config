@@ -13,7 +13,7 @@ return {
   {
     "glepnir/lspsaga.nvim",
     branch = "main",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "LspAttach",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
       "nvim-treesitter/nvim-treesitter",
@@ -32,9 +32,6 @@ return {
       },
       symbol_in_winbar = {
         enable = false,
-      },
-      rename = {
-        in_select = false,
       },
     },
   },
