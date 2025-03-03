@@ -1,20 +1,19 @@
 local opt = vim.opt
 
--- options
-opt.termguicolors = true
-
 opt.spell = true
-opt.spelloptions = { "camel" } --- if a word is CamelCased, assume "Cased" is a separate word
+--- if a word is CamelCased, assume "Cased" is a separate word
+opt.spelloptions = { "camel" }
 
 opt.smartindent = true
 opt.expandtab = true
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.softtabstop = 2
+-- opt.tabstop = 2
+-- opt.shiftwidth = 2
+-- opt.softtabstop = 2
 
 opt.textwidth = 80
 
-opt.ignorecase = true -- ignore command cases e.g. packerup -> PackerUpdate when hitting tab
+-- ignore command cases e.g. packerup -> PackerUpdate when hitting tab
+opt.ignorecase = true
 opt.smartcase = true
 
 opt.cursorline = true
