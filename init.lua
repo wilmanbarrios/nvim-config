@@ -6,7 +6,7 @@ require("wdx.options")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 
   local out = vim.fn.system({
@@ -30,15 +30,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-package.path = package.path
-  .. ";"
-  .. vim.fn.expand("~/.luarocks/share/lua/5.4/?.lua")
 
 require("lazy").setup("wdx.plugins", {
-  install = {
-    colorscheme = { "tokyonight", "habamax" },
-  },
   change_detection = {
-    notify = false, -- get a notification when changes are found
+    notify = false,
   },
 })
