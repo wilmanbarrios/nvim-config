@@ -1,5 +1,3 @@
-require("wdx.globals")
-
 -- leader key
 vim.g.mapleader = " "
 
