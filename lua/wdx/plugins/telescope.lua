@@ -125,7 +125,7 @@ return {
     {
       "<Leader>sw",
       function()
-        local text = vim.fn.input("Grep String 👉", vim.fn.expand("<cword>"))
+        local text = vim.fn.input("Grep String 👉 ", vim.fn.expand("<cword>"))
 
         if text == "" then
           return
