@@ -6,7 +6,6 @@ return {
   {
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
-    event = "VeryLazy",
     config = function()
       vim.g.startuptime_tries = 10
     end,
