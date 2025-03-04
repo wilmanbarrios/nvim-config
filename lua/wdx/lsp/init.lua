@@ -31,16 +31,17 @@ local on_attach = function(client, bufnr)
   keymap("n", "grr", "<cmd>Lspsaga rename mode=n<CR>", bufopts)
 end
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = on_attach,
-})
+local capabilities = vim.tbl_deep_extend(
+  "force",
+  {},
+  vim.lsp.protocol.make_client_capabilities(),
+  require("cmp_nvim_lsp").default_capabilities()
+)
 
 local servers = {
-  -- tailwindcss = {},
-  -- graphql = {},
-
-  --- Python
-  --- pyright: static type checker
+  eslint = true,
+  tailwindcss = true,
+  ruff = true,
   pyright = {
     settings = {
       pyright = {
@@ -56,9 +57,6 @@ local servers = {
       },
     },
   },
-  --- ruff: an extremely fast Python linter and code formatter
-  ruff = {},
-
   lua_ls = {
     on_init = function(client)
       if client.workspace_folders then
@@ -110,16 +108,25 @@ local servers = {
   --     licenceKey = os.getenv("INTELEPHENSE_LICENCE_KEY"),
   --   },
   -- },
-  eslint = {},
 }
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = vim.tbl_keys(servers),
+  handlers = {
+    function(server_name)
+      local opts = {}
+      if type(servers[server_name]) == "table" then
+        ---@diagnostic disable-next-line: cast-local-type
+        opts = servers[server_name]
+      end
 
-for server, opts in pairs(servers) do
-  lspconfig[server].setup(vim.tbl_extend("force", {
-    capabilities = capabilities,
-  }, opts))
-end
+      lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
+        capabilities = capabilities,
+      }, opts))
+    end,
+  },
+})
 
 require("typescript-tools").setup({
   settings = {
@@ -134,4 +141,8 @@ require("typescript-tools").setup({
 
     on_attach(...)
   end,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = on_attach,
 })

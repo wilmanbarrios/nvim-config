@@ -2,12 +2,22 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
     config = function()
       require("wdx.lsp")
       vim.g.markdown_fenced_languages = {
         "ts=typescript",
       }
     end,
+  },
+
+  {
+    "pmizio/typescript-tools.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   },
 
   {
@@ -34,12 +44,6 @@ return {
         enable = false,
       },
     },
-  },
-
-  {
-    "pmizio/typescript-tools.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   },
 
   -- {
