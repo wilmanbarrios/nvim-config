@@ -29,8 +29,6 @@ local on_attach = function(client, bufnr)
   keymap("n", "dl", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
   keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
   keymap("n", "grr", "<cmd>Lspsaga rename mode=n<CR>", bufopts)
-
-  vim.o.tagfunc = "v:lua.vim.lsp.tagfunc"
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {

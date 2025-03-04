@@ -75,20 +75,21 @@ return {
       -- register_listeners()
     end,
     keys = function()
-      local api = require("nvim-tree.api")
-
       return {
         {
           "<C-b>",
           function()
-            api.tree.toggle()
+            require("nvim-tree.api").tree.toggle()
           end,
           desc = "Open/close nvim-tree",
         },
         {
           "<Leader>l",
           function()
-            api.tree.find_file({ open = true, focus = true })
+            require("nvim-tree.api").tree.find_file({
+              open = true,
+              focus = true,
+            })
           end,
           desc = "Open the current buffer on the tree, or focusing it if already open.",
         },
