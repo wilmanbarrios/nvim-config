@@ -84,6 +84,22 @@ return {
     main = "fidget",
     config = true,
     event = { "BufReadPre", "BufNewFile" },
+    opts = function()
+      return {
+        notification = {
+          configs = {
+            default = vim.tbl_extend(
+              "force",
+              require("fidget.notification").default_config,
+              {
+                name = false,
+                icon = false,
+              }
+            ),
+          },
+        },
+      }
+    end,
   },
 
   -- highlight hex color

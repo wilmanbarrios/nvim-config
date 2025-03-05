@@ -138,6 +138,8 @@ require("mason-lspconfig").setup({
           local ts_tools = require("typescript-tools.api")
 
           keymap("n", "gsd", ts_tools.go_to_source_definition)
+
+          on_attach(...)
         end,
       })
     end,
