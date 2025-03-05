@@ -42,6 +42,7 @@ local servers = {
   eslint = true,
   tailwindcss = true,
   ruff = true,
+  ts_ls = true,
   pyright = {
     settings = {
       pyright = {
@@ -125,22 +126,22 @@ require("mason-lspconfig").setup({
         capabilities = capabilities,
       }, opts))
     end,
+
+    ts_ls = function()
+      require("typescript-tools").setup({
+        settings = {
+          tsserver_plugins = {
+            "@styled/typescript-styled-plugin",
+          },
+        },
+        on_attach = function(...)
+          local ts_tools = require("typescript-tools.api")
+
+          keymap("n", "gsd", ts_tools.go_to_source_definition)
+        end,
+      })
+    end,
   },
-})
-
-require("typescript-tools").setup({
-  settings = {
-    tsserver_plugins = {
-      "@styled/typescript-styled-plugin",
-    },
-  },
-  on_attach = function(...)
-    local ts_tools = require("typescript-tools.api")
-
-    keymap("n", "gsd", ts_tools.go_to_source_definition)
-
-    on_attach(...)
-  end,
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {

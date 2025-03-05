@@ -4,6 +4,8 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "pmizio/typescript-tools.nvim",
+      "nvim-lua/plenary.nvim",
     },
     config = function()
       require("wdx.lsp")
@@ -11,12 +13,6 @@ return {
         "ts=typescript",
       }
     end,
-  },
-
-  {
-    "pmizio/typescript-tools.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   },
 
   {
