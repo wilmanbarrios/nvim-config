@@ -35,10 +35,6 @@ return {
       },
     },
     init = function()
-      -- NOTE: just testing this thing because the docs says: "Expression which
-      -- is evaluated to format a range of lines for the |gq| operator or
-      -- automatic formatting"
-
       -- If you want the formatexpr, here is the place to set it
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
