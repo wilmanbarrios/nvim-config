@@ -21,10 +21,16 @@ return {
 
   -- Commenting
   {
+    "echasnovski/mini.comment",
+    event = "InsertEnter",
+    version = "*",
+  },
+  {
     "folke/ts-comments.nvim",
     opts = {},
     event = "VeryLazy",
-    enabled = vim.fn.has("nvim-0.10.0") == 1,
+    enabled = false,
+    -- enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
 
   -- Surround things with things
