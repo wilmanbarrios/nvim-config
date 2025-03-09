@@ -1,5 +1,9 @@
 return {
   "L3MON4D3/LuaSnip",
+  event = "InsertEnter",
+  dependencies = {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+  },
   config = function()
     local ls = require("luasnip")
     local fmt = require("luasnip.extras.fmt").fmt

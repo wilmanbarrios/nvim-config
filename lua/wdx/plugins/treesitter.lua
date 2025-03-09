@@ -61,6 +61,7 @@ return {
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
+    event = "InsertEnter",
     opts = {
       context_commentstring = {
         enable = false,
