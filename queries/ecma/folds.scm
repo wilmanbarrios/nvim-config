@@ -1,7 +1,6 @@
 ; extends
 
 [
-  (array)
-  (arguments)
+  (parenthesized_expression)
 ] @fold
 
