@@ -65,7 +65,7 @@ return {
           require("conform").format({ async = true, lsp_fallback = true })
 
           local filename = vim.fn.expand("%:t")
-          require("fidget").notify(
+          vim.notify(
             string.format("File '...%s' formatted!", filename),
             vim.log.levels.INFO,
             { annote = "conform.nvim" }

@@ -9,10 +9,23 @@ return {
       { "<leader>gs", "<cmd>G<cr><C-w>o", desc = "Git status page" },
       { "<leader>gb", "<cmd>Git blame<CR>", desc = "Git blame page" },
       {
+        "<leader>grf",
+        function()
+          vim.cmd("Git restore %")
+
+          vim.notify(
+            "File restored!",
+            vim.log.levels.INFO,
+            { annote = "vim-fugitive" }
+          )
+        end,
+        desc = "[G]it [r]estore current [f]ile",
+      },
+      {
         mode = "x",
         "<leader>gy",
         ":GBrowse!<CR>",
-        desc = "Get a link for currently highlighted region",
+        desc = "[G]it [Y]nk link for visual selection",
       },
       -- TODO: create a command that given a branch name will produce a well
       -- formatted branch name

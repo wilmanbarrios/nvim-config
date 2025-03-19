@@ -93,6 +93,7 @@ return {
     opts = function()
       return {
         notification = {
+          override_vim_notify = true,
           configs = {
             default = vim.tbl_extend(
               "force",
