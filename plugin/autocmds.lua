@@ -28,22 +28,15 @@ vim.api.nvim_create_autocmd("BufRead", {
   end,
 })
 
-local function get_current_branch()
-  local branch =
-    vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
-  if branch ~= "" then
-    return branch
-  else
-    return ""
-  end
-end
-
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
   callback = function(ev)
-    local branch = get_current_branch()
+    local utils = require("wdx.utils")
+
+    local branch = utils.git_branch()
     local issue_code = string.match(branch, "([A-Z]+-%d+)")
     if not issue_code then
+      vim.cmd("startinsert")
       return
     end
 

@@ -1,3 +1,5 @@
+local utils = require("wdx.utils")
+
 return {
   {
     "tpope/vim-fugitive",
@@ -8,6 +10,12 @@ return {
     keys = {
       { "<leader>gs", "<cmd>G<cr><C-w>o", desc = "Git status page" },
       { "<leader>gb", "<cmd>Git blame<CR>", desc = "Git blame page" },
+      {
+        mode = "x",
+        "<leader>gy",
+        ":GBrowse!<CR>",
+        desc = "[G]it [Y]nk link for visual selection",
+      },
       {
         "<leader>grf",
         function()
@@ -22,10 +30,32 @@ return {
         desc = "[G]it [r]estore current [f]ile",
       },
       {
-        mode = "x",
-        "<leader>gy",
-        ":GBrowse!<CR>",
-        desc = "[G]it [Y]nk link for visual selection",
+        mode = "n",
+        "<leader>grb",
+        function()
+          local current_branch = utils.git_branch()
+          if not string.len(current_branch) then
+            vim.notify(
+              "Could not find a git branch",
+              vim.log.levels.WARN,
+              { annote = "vim-fugitive" }
+            )
+            return nil
+          end
+
+          local ignored_branch = { "master", "main", "develop", "development" }
+          if vim.tbl_contains(ignored_branch, current_branch) then
+            vim.notify(
+              string.format("The branch '%s' can't be renamed", current_branch),
+              vim.log.levels.WARN,
+              { annote = "vim-fugitive" }
+            )
+            return nil
+          end
+
+          vim.fn.feedkeys(string.format(":Git branch -m %s", current_branch))
+        end,
+        desc = "[g]it [r]ename [b]ranch current branch",
       },
       -- TODO: create a command that given a branch name will produce a well
       -- formatted branch name
