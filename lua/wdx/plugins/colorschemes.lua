@@ -1,8 +1,7 @@
 return {
   {
     "folke/tokyonight.nvim",
-    lazy = true,
-    -- priority = 1000,
+    priority = 1000,
     opts = function()
       local util = require("tokyonight.util")
 
@@ -19,13 +18,12 @@ return {
     end,
     config = function(_, opts)
       require("tokyonight").setup(opts)
-      -- vim.cmd.colorscheme("tokyonight")
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
   {
     "rose-pine/neovim",
-    lazy = true,
-    -- priority = 1000,
+    priority = 1000,
     name = "rose-pine",
     opts = {
       styles = {
@@ -39,7 +37,6 @@ return {
   },
   {
     "Mofiqul/vscode.nvim",
-    lazy = false,
     priority = 1000,
     opts = function()
       -- local c = require("vscode.colors").get_colors()
@@ -78,7 +75,7 @@ return {
     config = function(_, opts)
       local vscode = require("vscode")
       vscode.setup(opts)
-      vscode.load()
+      -- vscode.load()
     end,
   },
 }
