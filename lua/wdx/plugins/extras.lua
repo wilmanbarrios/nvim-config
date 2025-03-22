@@ -89,7 +89,7 @@ return {
     "j-hui/fidget.nvim",
     main = "fidget",
     config = true,
-    event = { "BufReadPre", "BufNewFile" },
+    event = "VeryLazy",
     opts = function()
       return {
         notification = {
