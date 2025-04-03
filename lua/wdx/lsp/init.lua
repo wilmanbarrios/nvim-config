@@ -11,6 +11,9 @@ local on_attach = function(client, bufnr)
   keymap("i", "<c-k>", function()
     vim.lsp.buf.signature_help({ border = "rounded" })
   end, bufopts)
+  keymap("n", "K", function()
+    vim.lsp.buf.hover({ border = "rounded" })
+  end, bufopts)
   keymap("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   keymap("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
 
@@ -28,7 +31,7 @@ local on_attach = function(client, bufnr)
   keymap("n", "dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
   keymap("n", "dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
   keymap("n", "dl", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
-  keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
+  -- keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
   keymap("n", "grr", "<cmd>Lspsaga rename mode=n<CR>", bufopts)
 end
 
