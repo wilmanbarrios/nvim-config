@@ -39,11 +39,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
   },
 
-  -- Extra set of mapping
-  {
-    "tpope/vim-unimpaired",
-    event = { "BufReadPre", "BufNewFile" },
-  },
   -- Expand builtin text-objects
   {
     "wellle/targets.vim",
