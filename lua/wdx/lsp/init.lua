@@ -1,5 +1,4 @@
 local lspconfig = require("lspconfig")
-require("wdx.lsp.handlers")
 require("wdx.lsp.diagnostic")
 
 local keymap = vim.keymap.set
@@ -9,7 +8,9 @@ local on_attach = function(client, bufnr)
 
   -- Builtin LSP
   keymap("n", "gD", vim.lsp.buf.implementation, bufopts)
-  keymap("i", "<c-k>", vim.lsp.buf.signature_help, bufopts)
+  keymap("i", "<c-k>", function()
+    vim.lsp.buf.signature_help({ border = "rounded" })
+  end, bufopts)
   keymap("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   keymap("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
 
