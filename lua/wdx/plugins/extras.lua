@@ -39,6 +39,11 @@ return {
     event = { "BufReadPre", "BufNewFile" },
   },
 
+  {
+    "tpope/vim-unimpaired",
+    event = { "BufReadPre", "BufNewFile" },
+  },
+
   -- Expand builtin text-objects
   {
     "wellle/targets.vim",

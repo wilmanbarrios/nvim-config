@@ -39,3 +39,5 @@ nnoremap <Leader>y "+y
 " inoremap ;; <esc>A;<esc>
 " inoremap ,, <esc>A,<esc>
 
+noremap j gj
+noremap k gk

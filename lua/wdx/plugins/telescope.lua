@@ -40,6 +40,7 @@ return {
       },
     }
   end,
+  cmd = "Telescope",
   keys = {
     {
       "<Leader>p",
@@ -144,7 +145,7 @@ return {
       end,
     },
     {
-      "<Leader>gr",
+      "<Leader>grr",
       function()
         require("telescope.builtin").lsp_document_symbols()
       end,

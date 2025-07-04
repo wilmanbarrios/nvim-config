@@ -32,6 +32,7 @@ return {
           -- To organize the imports.
           "ruff_organize_imports",
         },
+        markdown = { "prettierd" },
       },
     },
     init = function()

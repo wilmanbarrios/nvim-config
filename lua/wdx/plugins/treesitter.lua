@@ -51,13 +51,7 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = false
-      vim.o.foldmethod = "expr"
-      vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    end,
+    main = "nvim-treesitter.configs",
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",

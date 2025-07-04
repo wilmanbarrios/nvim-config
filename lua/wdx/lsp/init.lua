@@ -1,8 +1,8 @@
-local lspconfig = require("lspconfig")
 require("wdx.lsp.diagnostic")
 
 local keymap = vim.keymap.set
 
+---@diagnostic disable-next-line: unused-local
 local on_attach = function(client, bufnr)
   local bufopts = { buffer = bufnr, noremap = true }
 
@@ -35,121 +35,45 @@ local on_attach = function(client, bufnr)
   keymap("n", "grr", "<cmd>Lspsaga rename mode=n<CR>", bufopts)
 end
 
-local capabilities = vim.tbl_deep_extend(
-  "force",
-  {},
-  vim.lsp.protocol.make_client_capabilities(),
-  require("cmp_nvim_lsp").default_capabilities()
-)
-
-local servers = {
-  eslint = true,
-  tailwindcss = true,
-  ruff = true,
-  ts_ls = true,
-  pyright = {
-    settings = {
-      pyright = {
-        -- Using Ruff's import organizer
-        disableOrganizeImports = true,
-      },
-      python = {
-        pythonPath = ".venv/bin/python",
-        analysis = {
-          -- Ignore all files for analysis to exclusively use Ruff for linting
-          ignore = { "*" },
-        },
-      },
-    },
-  },
-  lua_ls = {
-    on_init = function(client)
-      if client.workspace_folders then
-        local path = client.workspace_folders[1].name
-        if
-          path ~= vim.fn.stdpath("config")
-          and (
-            vim.loop.fs_stat(path .. "/.luarc.json")
-            or vim.loop.fs_stat(path .. "/.luarc.jsonc")
-          )
-        then
-          return
-        end
-      end
-
-      client.config.settings.Lua =
-        vim.tbl_deep_extend("force", client.config.settings.Lua, {
-          runtime = {
-            -- Tell the language server which version of Lua you're using
-            -- (most likely LuaJIT in the case of Neovim)
-            version = "LuaJIT",
-          },
-          -- Make the server aware of Neovim runtime files
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              vim.env.VIMRUNTIME,
-              -- Depending on the usage, you might want to add additional paths here.
-              -- "${3rd}/luv/library"
-              -- "${3rd}/busted/library",
-            },
-            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
-            -- library = vim.api.nvim_get_runtime_file("", true)
-          },
-        })
-    end,
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = { "vim" },
-        },
-      },
-    },
-  },
-  -- intelephense = {
-  --   autostart = false,
-  --   init_options = {
-  --     globalStoragePath = os.getenv("XDG_DATA_HOME") .. "/intelephense",
-  --     licenceKey = os.getenv("INTELEPHENSE_LICENCE_KEY"),
-  --   },
-  -- },
-}
-
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = vim.tbl_keys(servers),
-  handlers = {
-    function(server_name)
-      local opts = {}
-      if type(servers[server_name]) == "table" then
-        ---@diagnostic disable-next-line: cast-local-type
-        opts = servers[server_name]
-      end
-
-      lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
-        capabilities = capabilities,
-      }, opts))
-    end,
-
-    ts_ls = function()
-      require("typescript-tools").setup({
-        settings = {
-          tsserver_plugins = {
-            "@styled/typescript-styled-plugin",
-          },
-        },
-        on_attach = function(...)
-          local ts_tools = require("typescript-tools.api")
-
-          keymap("n", "gsd", ts_tools.go_to_source_definition)
-
-          on_attach(...)
-        end,
-      })
-    end,
+  automatic_enable = {
+    exclude = { "ts_ls" },
+  },
+  ensure_installed = {
+    "eslint",
+    "lua_ls",
+    "pyright",
+    "ruff",
+    "tailwindcss",
+    "ts_ls",
   },
 })
 
+require("typescript-tools").setup({
+  settings = {
+    tsserver_plugins = {
+      "@styled/typescript-styled-plugin",
+    },
+  },
+  on_attach = function(...)
+    local ts_tools = require("typescript-tools.api")
+
+    keymap("n", "gsd", ts_tools.go_to_source_definition)
+
+    on_attach(...)
+  end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
-  callback = on_attach,
+  callback = function(args)
+    vim.o.foldlevelstart = 99
+    vim.o.foldenable = false
+    vim.o.foldmethod = "expr"
+    vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+    vim.keymap.del("n", "K", { buffer = args.buf })
+
+    on_attach(nil, args.buf)
+  end,
 })
