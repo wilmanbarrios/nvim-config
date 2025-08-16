@@ -11,9 +11,11 @@ local on_attach = function(client, bufnr)
   keymap("i", "<c-k>", function()
     vim.lsp.buf.signature_help({ border = "rounded" })
   end, bufopts)
+
   keymap("n", "K", function()
     vim.lsp.buf.hover({ border = "rounded" })
   end, bufopts)
+
   keymap("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   keymap("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
 
@@ -38,8 +40,10 @@ end
 require("mason").setup()
 require("mason-lspconfig").setup({
   automatic_enable = {
-    exclude = { "ts_ls" },
+    exclude = { "ts_ls", "biome" },
   },
+})
+require("mason-tool-installer").setup({
   ensure_installed = {
     "eslint",
     "lua_ls",
@@ -47,6 +51,10 @@ require("mason-lspconfig").setup({
     "ruff",
     "tailwindcss",
     "ts_ls",
+    { "biome", version = "1.9.5-nightly.81fdedb" },
+    "prettier",
+    "prettierd",
+    "stylua",
   },
 })
 

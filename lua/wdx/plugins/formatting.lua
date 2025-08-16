@@ -25,11 +25,9 @@ return {
         javascript = js,
         typescript = js,
         typescriptreact = js,
-        graphql = { "prettierd" },
+        graphql = { "biome" },
         python = {
-          -- To run the Ruff formatter.
           "ruff_format",
-          -- To organize the imports.
           "ruff_organize_imports",
         },
         markdown = { "prettierd" },
