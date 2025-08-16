@@ -1,12 +1,22 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    main = "nvim-treesitter.configs",
+    lazy = false,
+    branch = "master",
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
     },
+    init = function()
+      vim.o.foldenable = false
+      vim.o.foldlevelstart = 99
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
     opts = {
       ensure_installed = "all",
       highlight = {
@@ -51,7 +61,6 @@ return {
         },
       },
     },
-    main = "nvim-treesitter.configs",
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",

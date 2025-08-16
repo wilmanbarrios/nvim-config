@@ -67,13 +67,6 @@ require("typescript-tools").setup({
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
-    vim.o.foldlevelstart = 99
-    vim.o.foldenable = false
-    vim.o.foldmethod = "expr"
-    vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
-    vim.keymap.del("n", "K", { buffer = args.buf })
-
     on_attach(nil, args.buf)
   end,
 })
