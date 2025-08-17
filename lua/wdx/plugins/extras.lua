@@ -10,10 +10,13 @@ return {
       vim.g.startuptime_tries = 10
     end,
   },
+
+  -- To delete only the spaces I add to a file and not the existing ones
   {
     "lewis6991/spaceless.nvim",
     event = { "BufReadPre", "BufNewFile" },
   },
+
   {
     "mattn/emmet-vim",
     event = { "BufReadPre", "BufNewFile" },
@@ -25,12 +28,12 @@ return {
     event = "InsertEnter",
     version = "*",
   },
+
+  -- Minimal and fast autopairs
   {
-    "folke/ts-comments.nvim",
-    opts = {},
-    event = "VeryLazy",
-    enabled = false,
-    -- enabled = vim.fn.has("nvim-0.10.0") == 1,
+    "echasnovski/mini.pairs",
+    version = "*",
+    event = { "BufReadPre", "BufNewFile" },
   },
 
   -- Surround things with things
@@ -39,6 +42,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
   },
 
+  -- Pairs of handy bracket mappings
   {
     "tpope/vim-unimpaired",
     event = { "BufReadPre", "BufNewFile" },
@@ -49,11 +53,6 @@ return {
     "wellle/targets.vim",
     event = { "BufReadPre", "BufNewFile" },
   },
-  {
-    "windwp/nvim-autopairs",
-    config = true,
-    event = { "BufReadPre", "BufNewFile" },
-  },
 
   -- Align stuffs
   {
@@ -61,6 +60,7 @@ return {
     cmd = "EasyAlign",
   },
 
+  -- Find and replace UI for large searches
   {
     "nvim-pack/nvim-spectre",
     main = "spectre",
@@ -85,6 +85,7 @@ return {
     },
   },
 
+  -- Notifications
   {
     "j-hui/fidget.nvim",
     main = "fidget",

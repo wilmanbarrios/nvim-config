@@ -55,7 +55,7 @@ return {
 
           vim.fn.feedkeys(string.format(":Git branch -m %s", current_branch))
         end,
-        desc = "[g]it [r]ename [b]ranch current branch",
+        desc = "[g]it [r]ename [b]ranch",
       },
       -- TODO: create a command that given a branch name will produce a well
       -- formatted branch name
