@@ -25,15 +25,17 @@ return {
   -- Commenting
   {
     "echasnovski/mini.comment",
-    event = "InsertEnter",
     version = "*",
+    event = "InsertEnter",
+    config = true,
   },
 
   -- Minimal and fast autopairs
   {
     "echasnovski/mini.pairs",
     version = "*",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "InsertEnter",
+    config = true,
   },
 
   -- Surround things with things
