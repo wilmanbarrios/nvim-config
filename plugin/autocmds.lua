@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- TODO: describe
+-- Keep splits even when resizing tmux
 vim.api.nvim_create_autocmd("VimResized", {
   pattern = "*",
   command = "wincmd =",
