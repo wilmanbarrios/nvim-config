@@ -6,8 +6,21 @@ local keymap = vim.keymap.set
 local on_attach = function(client, bufnr)
   local bufopts = { buffer = bufnr, noremap = true }
 
-  -- Builtin LSP
+  keymap("n", "gd", vim.lsp.buf.definition, bufopts)
   keymap("n", "gD", vim.lsp.buf.implementation, bufopts)
+  keymap("n", "grr", vim.lsp.buf.rename, bufopts)
+  keymap("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
+  keymap("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
+
+  keymap(
+    "n",
+    "gO",
+    "<cmd>vs | lua vim.lsp.buf.definition()<CR>",
+    vim.tbl_extend("force", bufopts, {
+      desc = "Goto definition in a vsplit window",
+    })
+  )
+
   keymap("i", "<c-k>", function()
     vim.lsp.buf.signature_help({ border = "rounded" })
   end, bufopts)
@@ -15,26 +28,6 @@ local on_attach = function(client, bufnr)
   keymap("n", "K", function()
     vim.lsp.buf.hover({ border = "rounded" })
   end, bufopts)
-
-  keymap("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
-  keymap("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
-
-  --- LSP Saga
-  keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", bufopts)
-  keymap(
-    "n",
-    "gO",
-    "<cmd>vs | Lspsaga goto_definition<CR>",
-    vim.tbl_extend("force", bufopts, {
-      desc = "Goto definition in a vsplit window",
-    })
-  )
-  keymap("n", "<Leader>D", "<cmd>Lspsaga goto_type_definition<CR>", bufopts)
-  keymap("n", "dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
-  keymap("n", "dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
-  keymap("n", "dl", "<cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
-  -- keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
-  keymap("n", "grr", "<cmd>Lspsaga rename mode=n<CR>", bufopts)
 end
 
 require("mason").setup()
@@ -55,6 +48,7 @@ require("mason-tool-installer").setup({
     "prettier",
     "prettierd",
     "stylua",
+    "tree-sitter-cli",
   },
 })
 

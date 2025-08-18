@@ -8,7 +8,6 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-context",
     },
     init = function()
       vim.o.foldenable = false
@@ -29,9 +28,6 @@ return {
         highlight_definitions = {
           enable = true,
         },
-      },
-      context = {
-        enable = true,
       },
       textobjects = {
         select = {
@@ -62,6 +58,16 @@ return {
       },
     },
   },
+
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    main = "treesitter-context",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      enable = true,
+    },
+  },
+
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     event = "InsertEnter",
@@ -75,6 +81,7 @@ return {
       vim.g.skip_ts_context_commentstring_module = true
     end,
   },
+
   {
     "windwp/nvim-ts-autotag",
     opts = {},
