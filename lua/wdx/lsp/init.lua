@@ -2,20 +2,43 @@ require("wdx.lsp.diagnostic")
 
 local keymap = vim.keymap.set
 
+local lsp_node = os.getenv("LSP_NODE_PATH")
+if lsp_node then
+  vim.env.PATH = lsp_node .. ":" .. vim.env.PATH
+end
+
 ---@diagnostic disable-next-line: unused-local
 local on_attach = function(client, bufnr)
   local bufopts = { buffer = bufnr, noremap = true }
 
-  keymap("n", "gd", vim.lsp.buf.definition, bufopts)
+  keymap("n", "gd", function()
+    vim.lsp.buf.definition({
+      on_list = function(options)
+        vim.fn.setqflist({}, " ", options)
+        vim.cmd.cfirst()
+      end,
+    })
+  end, bufopts)
   keymap("n", "gD", vim.lsp.buf.implementation, bufopts)
   keymap("n", "grr", vim.lsp.buf.rename, bufopts)
+  keymap("n", "dl", vim.diagnostic.open_float, bufopts)
   keymap("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
   keymap("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
 
   keymap(
     "n",
     "gO",
-    "<cmd>vs | lua vim.lsp.buf.definition()<CR>",
+    -- "<cmd>vs | lua vim.lsp.buf.definition()<CR>",
+    function()
+      vim.cmd("vs")
+
+      vim.lsp.buf.definition({
+        on_list = function(options)
+          vim.fn.setqflist({}, " ", options)
+          vim.cmd.cfirst()
+        end,
+      })
+    end,
     vim.tbl_extend("force", bufopts, {
       desc = "Goto definition in a vsplit window",
     })
@@ -32,9 +55,9 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  automatic_enable = {
-    exclude = { "ts_ls", "biome" },
-  },
+  -- automatic_enable = {
+  --   exclude = { "ts_ls", "biome" },
+  -- },
 })
 require("mason-tool-installer").setup({
   ensure_installed = {
@@ -44,27 +67,13 @@ require("mason-tool-installer").setup({
     "ruff",
     "tailwindcss",
     "ts_ls",
-    { "biome", version = "1.9.5-nightly.81fdedb" },
+    "biome",
     "prettier",
     "prettierd",
     "stylua",
     "tree-sitter-cli",
   },
-})
-
-require("typescript-tools").setup({
-  settings = {
-    tsserver_plugins = {
-      "@styled/typescript-styled-plugin",
-    },
-  },
-  on_attach = function(...)
-    local ts_tools = require("typescript-tools.api")
-
-    keymap("n", "gsd", ts_tools.go_to_source_definition)
-
-    on_attach(...)
-  end,
+  auto_update = true,
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {

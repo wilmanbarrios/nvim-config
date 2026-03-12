@@ -1,62 +1,35 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    main = "nvim-treesitter.configs",
     lazy = false,
-    branch = "master",
+    branch = "main",
     build = ":TSUpdate",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-refactor",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-    },
-    init = function()
-      vim.o.foldenable = false
-      vim.o.foldlevelstart = 99
-      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    config = function()
+      local ts = require("nvim-treesitter")
+      ts.setup({
+        install_dir = vim.fn.stdpath("data") .. "/site",
+      })
 
-      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      -- local ok = ts.install("unstable")
+      -- if not ok then
+      --   vim.notify(
+      --     "TS parsers installation was not successful.",
+      --     vim.log.levels.WARN
+      --   )
+      --   return
+      -- end
+
+      local installed = require("nvim-treesitter.config").get_installed()
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = installed,
+        callback = function()
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+          vim.treesitter.start()
+        end,
+      })
     end,
-    opts = {
-      ensure_installed = "all",
-      highlight = {
-        enable = true,
-      },
-      indent = {
-        enable = true,
-      },
-      refactor = {
-        highlight_definitions = {
-          enable = true,
-        },
-      },
-      textobjects = {
-        select = {
-          enable = true,
-          -- Automatically jump forward to textobj, similar to targets.vim
-          lookahead = true,
-          keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ab"] = "@block.outer",
-            ["ib"] = "@block.inner",
-          },
-          selection_modes = {
-            ["@function.outer"] = "V",
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["L"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["H"] = "@parameter.inner",
-          },
-        },
-      },
-    },
   },
 
   {

@@ -1,4 +1,10 @@
-local js = { "biome", "prettierd", "prettier", stop_after_first = true }
+local js = {
+  "prettier_experimental_cli",
+  "biome",
+  "prettierd",
+  "prettier",
+  stop_after_first = true,
+}
 
 return {
   {
@@ -31,6 +37,18 @@ return {
           "ruff_organize_imports",
         },
         markdown = { "prettierd" },
+      },
+      formatters = {
+        prettier_experimental_cli = function()
+          local util = require("conform.util")
+          local prettier = vim.deepcopy(require("conform.formatters.prettier"))
+          util.add_formatter_args(
+            prettier,
+            { "--experimental-cli" },
+            { append = true }
+          )
+          return prettier
+        end,
       },
     },
     init = function()

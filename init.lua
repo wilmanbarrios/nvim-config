@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 require("wdx.disable_builtin")
 require("wdx.options")
 
--- vim.lsp.set_log_level("debug")
+-- vim.lsp.log.set_level("debug")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 

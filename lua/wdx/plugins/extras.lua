@@ -95,7 +95,11 @@ return {
     event = "VeryLazy",
     opts = function()
       return {
+        -- - Add 'NvimTree' to the 'notification.window.avoid' list to ensure Fidget continues to avoid nvim-tree.lua's file explorer.
         notification = {
+          window = {
+            avoid = { "NvimTree" },
+          },
           override_vim_notify = true,
           configs = {
             default = vim.tbl_extend(
@@ -148,6 +152,25 @@ return {
         "<cmd>lua require('textcase').operator('to_snake_case')<CR>",
         desc = "[c]ase [t]o [s]nake",
       },
+    },
+  },
+
+  {
+    "kevinhwang91/nvim-ufo",
+    main = "ufo",
+    dependencies = "kevinhwang91/promise-async",
+    init = function()
+      vim.o.foldenable = true
+      vim.o.foldcolumn = "1"
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+      vim.o.fillchars =
+        "eob: ,fold: ,foldopen:,foldsep: ,foldinner: ,foldclose:"
+    end,
+    opts = {
+      provider_selector = function()
+        return { "treesitter", "indent" }
+      end,
     },
   },
 }

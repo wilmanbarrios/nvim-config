@@ -12,21 +12,21 @@ vim.api.nvim_create_autocmd("VimResized", {
   command = "wincmd =",
 })
 
---- Workaround to fix folds when using telescope to open a file
----@see https://github.com/nvim-telescope/telescope.nvim/issues/559
-local disabled_fts = { "gitcommit", "fugitive" }
-vim.api.nvim_create_autocmd("BufRead", {
-  callback = function()
-    if vim.tbl_contains(disabled_fts, vim.bo.filetype) then
-      return
-    end
-
-    vim.api.nvim_create_autocmd("BufWinEnter", {
-      once = true,
-      command = "normal! zx | zR",
-    })
-  end,
-})
+-- --- Workaround to fix folds when using telescope to open a file
+-- ---@see https://github.com/nvim-telescope/telescope.nvim/issues/559
+-- local disabled_fts = { "gitcommit", "fugitive" }
+-- vim.api.nvim_create_autocmd("BufRead", {
+--   callback = function()
+--     if vim.tbl_contains(disabled_fts, vim.bo.filetype) then
+--       return
+--     end
+--
+--     vim.api.nvim_create_autocmd("BufWinEnter", {
+--       once = true,
+--       command = "normal! zx | zR",
+--     })
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
