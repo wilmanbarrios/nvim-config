@@ -19,14 +19,14 @@ return {
 
   {
     "mattn/emmet-vim",
-    event = { "BufReadPre", "BufNewFile" },
+    ft = { "html", "css", "scss", "less", "javascriptreact", "typescriptreact", "vue", "svelte", "astro", "eruby", "htmldjango" },
   },
 
   -- Commenting
   {
     "echasnovski/mini.comment",
     version = "*",
-    event = "InsertEnter",
+    event = { "BufReadPre", "BufNewFile" },
     config = true,
   },
 
@@ -62,26 +62,23 @@ return {
     cmd = "EasyAlign",
   },
 
-  -- Find and replace UI for large searches
+  -- Find and replace UI
   {
-    "nvim-pack/nvim-spectre",
-    main = "spectre",
-    dependencies = "nvim-lua/plenary.nvim",
-    opts = {
-      mappings = {
-        ["send_to_qf"] = {},
-      },
-    },
+    "MagicDuck/grug-far.nvim",
+    main = "grug-far",
+    opts = {},
     keys = {
       {
         "<leader>sr",
-        '<cmd>lua require("spectre").open()<CR>',
-        desc = "Open Spectre",
+        require("grug-far").open,
+        desc = "Open grug-far",
       },
       {
         mode = "v",
         "<leader>sr",
-        '<esc><cmd>lua require("spectre").open_visual()<CR>',
+        function()
+          require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } })
+        end,
         desc = "Search current word",
       },
     },

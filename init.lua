@@ -1,7 +1,6 @@
 -- leader key
 vim.g.mapleader = " "
 
-require("wdx.disable_builtin")
 require("wdx.options")
 
 -- vim.lsp.log.set_level("debug")
@@ -36,5 +35,22 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("wdx.plugins", {
   change_detection = {
     notify = false,
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "tar",
+        "tarPlugin",
+        "zip",
+        "zipPlugin",
+        "gzip",
+        "vimball",
+        "vimballPlugin",
+        "2html_plugin",
+      },
+    },
   },
 })

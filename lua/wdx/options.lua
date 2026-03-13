@@ -1,4 +1,12 @@
 local opt = vim.opt
+local g = vim.g
+
+-- disable unused providers
+g.loaded_ruby_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_python_provider = 0
+g.loaded_python3_provider = 0
+g.loaded_node_provider = 0
 
 opt.spell = true
 --- if a word is CamelCased, assume "Cased" is a separate word
@@ -12,7 +20,7 @@ opt.softtabstop = 2
 
 opt.textwidth = 80
 
--- ignore command cases e.g. packerup -> PackerUpdate when hitting tab
+-- ignore command cases when hitting tab
 opt.ignorecase = true
 opt.smartcase = true
 
@@ -24,8 +32,6 @@ opt.hidden = true
 opt.inccommand = "split"
 
 opt.colorcolumn = "80,120"
-
-opt.completeopt = { "menuone", "noinsert", "noselect" }
 
 opt.mouse = "a"
 

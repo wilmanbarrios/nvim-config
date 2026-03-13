@@ -5,8 +5,6 @@ return {
       "mason-org/mason.nvim",
       "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      "pmizio/typescript-tools.nvim",
-      "nvim-lua/plenary.nvim",
     },
     config = function()
       require("wdx.lsp")

@@ -64,9 +64,6 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
     opts = {
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
@@ -100,7 +97,7 @@ return {
 
         -- Actions
         map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
-        map("n", "<leader>hu", ":Gitsigns undo_state_hunk<CR>")
+        map("n", "<leader>hu", ":Gitsigns undo_stage_hunk<CR>")
         map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
         map("n", "<leader>hd", ":Gitsigns preview_hunk<CR>")
         map("n", "<leader>hb", ":Gitsigns toggle_current_line_blame<CR>")
