@@ -70,7 +70,9 @@ return {
     keys = {
       {
         "<leader>sr",
-        require("grug-far").open,
+        function()
+          require("grug-far").open()
+        end,
         desc = "Open grug-far",
       },
       {
