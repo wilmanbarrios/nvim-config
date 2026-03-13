@@ -2,16 +2,7 @@ return {
   -- Improved window navigation between tmux panes and vim
   { "christoomey/vim-tmux-navigator", event = "VeryLazy" },
 
-  -- Improved vim startuptime profiler
-  {
-    "dstein64/vim-startuptime",
-    cmd = "StartupTime",
-    config = function()
-      vim.g.startuptime_tries = 10
-    end,
-  },
-
-  -- To delete only the spaces I add to a file and not the existing ones
+-- To delete only the spaces I add to a file and not the existing ones
   {
     "lewis6991/spaceless.nvim",
     event = { "BufReadPre", "BufNewFile" },
