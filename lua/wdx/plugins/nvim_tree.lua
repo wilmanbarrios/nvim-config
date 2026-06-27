@@ -60,7 +60,7 @@ return {
             }
           end
 
-          api.config.mappings.default_on_attach(bufnr)
+          api.map.on_attach.default(bufnr)
 
           vim.keymap.set(
             "n",

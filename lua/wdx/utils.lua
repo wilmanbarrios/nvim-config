@@ -14,4 +14,21 @@ function M.git_branch()
   end
 end
 
+--- Filetypes served by the installed treesitter parsers.
+--- Parser/language names are not always equal to filetypes (e.g. `bash`
+--- serves `sh`), so map each installed parser to its real filetypes.
+---@return string[]
+function M.installed_ts_filetypes()
+  local installed = require("nvim-treesitter.config").get_installed("parsers")
+
+  local filetypes = {}
+  for _, lang in ipairs(installed) do
+    for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
+      filetypes[#filetypes + 1] = ft
+    end
+  end
+
+  return filetypes
+end
+
 return M

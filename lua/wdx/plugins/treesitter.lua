@@ -10,19 +10,8 @@ return {
         install_dir = vim.fn.stdpath("data") .. "/site",
       })
 
-      -- local ok = ts.install("unstable")
-      -- if not ok then
-      --   vim.notify(
-      --     "TS parsers installation was not successful.",
-      --     vim.log.levels.WARN
-      --   )
-      --   return
-      -- end
-
-      local installed = require("nvim-treesitter.config").get_installed()
-
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = installed,
+        pattern = require("wdx.utils").installed_ts_filetypes(),
         callback = function()
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
