@@ -34,7 +34,7 @@ return {
         "<leader>grb",
         function()
           local current_branch = utils.git_branch()
-          if not string.len(current_branch) then
+          if current_branch == "" then
             vim.notify(
               "Could not find a git branch",
               vim.log.levels.WARN,

@@ -24,8 +24,16 @@ vim.api.nvim_create_autocmd("FileType", {
       return
     end
 
+    -- Only prefix a blank subject line; a commit template, amend, or
+    -- --verbose buffer already has content on line 0 and must be left alone.
+    if vim.api.nvim_buf_get_lines(ev.buf, 0, 1, false)[1] ~= "" then
+      vim.cmd("startinsert")
+      return
+    end
+
     local text = issue_code .. ": "
     vim.api.nvim_buf_set_text(ev.buf, 0, 0, 0, 0, { text })
-    vim.api.nvim_feedkeys("A", "n", true)
+    vim.api.nvim_win_set_cursor(0, { 1, #text })
+    vim.cmd("startinsert!")
   end,
 })
