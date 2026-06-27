@@ -23,7 +23,7 @@ return {
   },
   {
     "rose-pine/neovim",
-    priority = 1000,
+    lazy = true,
     name = "rose-pine",
     opts = {
       styles = {
@@ -37,7 +37,7 @@ return {
   },
   {
     "Mofiqul/vscode.nvim",
-    priority = 1000,
+    lazy = true,
     opts = function()
       -- local c = require("vscode.colors").get_colors()
 
@@ -80,8 +80,7 @@ return {
   },
   {
     "vague-theme/vague.nvim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other plugins
+    lazy = true,
     config = function()
       -- NOTE: you do not need to call setup if you don't want to.
       require("vague").setup({
