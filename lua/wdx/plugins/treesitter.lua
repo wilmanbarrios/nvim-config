@@ -32,13 +32,11 @@ return {
 
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
+    main = "ts_context_commentstring",
     event = "InsertEnter",
     opts = {
-      context_commentstring = {
-        enable = false,
-      },
+      enable_autocmd = false,
     },
-    main = "ts_context_commentstring",
     init = function()
       vim.g.skip_ts_context_commentstring_module = true
     end,

@@ -2,7 +2,7 @@ return {
   -- Improved window navigation between tmux panes and vim
   { "christoomey/vim-tmux-navigator", event = "VeryLazy" },
 
--- To delete only the spaces I add to a file and not the existing ones
+  -- To delete only the spaces I add to a file and not the existing ones
   {
     "lewis6991/spaceless.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -10,7 +10,19 @@ return {
 
   {
     "mattn/emmet-vim",
-    ft = { "html", "css", "scss", "less", "javascriptreact", "typescriptreact", "vue", "svelte", "astro", "eruby", "htmldjango" },
+    ft = {
+      "html",
+      "css",
+      "scss",
+      "less",
+      "javascriptreact",
+      "typescriptreact",
+      "vue",
+      "svelte",
+      "astro",
+      "eruby",
+      "htmldjango",
+    },
   },
 
   -- Commenting
@@ -18,7 +30,16 @@ return {
     "echasnovski/mini.comment",
     version = "*",
     event = { "BufReadPre", "BufNewFile" },
-    config = true,
+    config = function()
+      require("mini.comment").setup({
+        options = {
+          custom_commentstring = function()
+            return require("ts_context_commentstring").calculate_commentstring()
+              or vim.bo.commentstring
+          end,
+        },
+      })
+    end,
   },
 
   -- Minimal and fast autopairs
@@ -70,7 +91,9 @@ return {
         mode = "v",
         "<leader>sr",
         function()
-          require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } })
+          require("grug-far").open({
+            prefills = { search = vim.fn.expand("<cword>") },
+          })
         end,
         desc = "Search current word",
       },

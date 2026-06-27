@@ -57,8 +57,6 @@ return {
         end,
         desc = "[g]it [r]ename [b]ranch",
       },
-      -- TODO: create a command that given a branch name will produce a well
-      -- formatted branch name
     },
   },
   {

@@ -55,9 +55,9 @@ end
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  -- automatic_enable = {
-  --   exclude = { "ts_ls", "biome" },
-  -- },
+  automatic_enable = {
+    exclude = { "biome" },
+  },
 })
 require("mason-tool-installer").setup({
   ensure_installed = {
