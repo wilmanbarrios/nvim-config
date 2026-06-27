@@ -14,6 +14,13 @@ function M.git_branch()
   end
 end
 
+--- Commentstring at the cursor, resolved via treesitter context.
+--- Single source for the ts_context_commentstring coupling.
+---@return string|nil
+function M.commentstring()
+  return require("ts_context_commentstring").calculate_commentstring()
+end
+
 --- Filetypes served by the installed treesitter parsers.
 --- Parser/language names are not always equal to filetypes (e.g. `bash`
 --- serves `sh`), so map each installed parser to its real filetypes.

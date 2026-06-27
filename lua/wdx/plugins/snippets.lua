@@ -27,7 +27,7 @@ return {
     end
 
     local function commentstring()
-      local cs = require("ts_context_commentstring").calculate_commentstring()
+      local cs = require("wdx.utils").commentstring()
 
       if cs == nil then
         return nil
